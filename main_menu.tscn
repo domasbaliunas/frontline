@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwwgs8vq0dfv4"]
 
-[ext_resource type="Script" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://dn12u7ocbrg15" path="res://main_menu.gd" id="1_06t4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
 bg_color = Color(1, 1, 1, 1)
@@ -51,4 +51,29 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rhts7")
 text = "Quit game"
 
+[node name="NewGameButton" type="Button" parent="." unique_id=393129009]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -44.0
+offset_right = 99.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rhts7")
+text = "New game"
+
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
