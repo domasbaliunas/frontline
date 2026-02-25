@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://djjycrn0muqdt"]
+
+[ext_resource type="Script" uid="uid://fajuf10ojmlk" path="res://pause_menu.gd" id="1_nwcfo"]
+[ext_resource type="Shader" uid="uid://c12bttjck6sao" path="res://new_shader.gdshader" id="2_05uyy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p81d2"]
+shader = ExtResource("2_05uyy")
+shader_parameter/lad = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_2nc7s"]
+
+[sub_resource type="Theme" id="Theme_d3xb4"]
+default_font = SubResource("FontVariation_2nc7s")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxa3g"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8sti"]
+bg_color = Color(0.7807016, 0.7807017, 0.7807016, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q2yj1"]
+
+[sub_resource type="Animation" id="Animation_a32ks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lad")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g7dbl"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lad")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.87200004142]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lv42l"]
+_data = {
+&"RESET": SubResource("Animation_a32ks"),
+&"blur": SubResource("Animation_g7dbl")
+}
+
+[node name="PauseMenu" type="Control" unique_id=1608247882]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_nwcfo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1237151003]
+material = SubResource("ShaderMaterial_p81d2")
+layout_mode = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1808252888]
+modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_mode = 0
+offset_left = 415.0
+offset_top = 215.0
+offset_right = 681.0
+offset_bottom = 325.0
+mouse_filter = 2
+theme = SubResource("Theme_d3xb4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=220389399]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="resumebutton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1489556145]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q2yj1")
+text = "Resume"
+
+[node name="restartbutton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=550839340]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q2yj1")
+text = "Restart"
+
+[node name="quitbutton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1993349258]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q2yj1")
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=240944190]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_lv42l")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/resumebutton" to="." method="_on_resumebutton_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/restartbutton" to="." method="_on_restartbutton_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/quitbutton" to="." method="_on_quitbutton_pressed"]
