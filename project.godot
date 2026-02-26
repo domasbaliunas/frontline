@@ -15,6 +15,10 @@ run/main_scene="uid://bfk8wbdn5lpvn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Currency="*uid://bmoiy127arqrc"
+
 [input]
 
 escape={

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cn53qctrs21xs" path="res://TileSet.png" id="1_gcorv"]
 [ext_resource type="PackedScene" uid="uid://sgia5wphopvw" path="res://Mobs/mob.tscn" id="2_1va4l"]
+[ext_resource type="Script" uid="uid://d2k4gyace51e5" path="res://coins_label.gd" id="3_5fonf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
 texture = ExtResource("1_gcorv")
@@ -850,3 +851,11 @@ rotation = -0.02969424
 loop = false
 
 [node name="Mob" parent="Path2D/PathFollow2D" unique_id=1987046420 instance=ExtResource("2_1va4l")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=470883070]
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=2099452816]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 25
+script = ExtResource("3_5fonf")
