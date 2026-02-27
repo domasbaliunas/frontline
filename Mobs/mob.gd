@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 200
 @export var max_health: float = 100
 
+
 var health: float
 
 # Max and min scale decides the scaling amount when damage is taken
@@ -10,6 +11,7 @@ var health: float
 
 func _ready() -> void:
 	health = max_health
+	add_to_group("mob")
 
 func _process(delta: float) -> void:
 

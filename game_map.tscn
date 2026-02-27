@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cn53qctrs21xs" path="res://TileSet.png" id="1_gcorv"]
 [ext_resource type="PackedScene" uid="uid://sgia5wphopvw" path="res://Mobs/mob.tscn" id="2_1va4l"]
 [ext_resource type="Script" uid="uid://d2k4gyace51e5" path="res://coins_label.gd" id="3_5fonf"]
+[ext_resource type="Script" uid="uid://0jaywn3aq4x8" path="res://hp.gd" id="4_hrtji"]
+[ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://player.tscn" id="4_tw6lq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
 texture = ExtResource("1_gcorv")
@@ -859,3 +861,17 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 25
 script = ExtResource("3_5fonf")
+
+[node name="HP" type="Label" parent="CanvasLayer" unique_id=1784496523]
+offset_left = 1059.0
+offset_top = -5.0
+offset_right = 1155.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0.99607843, 0, 0.07450981, 1)
+theme_override_font_sizes/font_size = 38
+text = "10❤"
+horizontal_alignment = 1
+script = ExtResource("4_hrtji")
+
+[node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
+position = Vector2(1026, 624)
