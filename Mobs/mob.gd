@@ -11,7 +11,7 @@ var health: float
 
 func _ready() -> void:
 	health = max_health
-	add_to_group("mob")
+	add_to_group("mobs")
 
 func _process(delta: float) -> void:
 

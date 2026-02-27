@@ -9,7 +9,7 @@ func _ready():
 	update_ui()
 
 func _on_body_entered(body):
-	if body.is_in_group("mob"):
+	if body.is_in_group("mobs"):
 		hp -= 1
 		body.queue_free()
 		update_ui()
