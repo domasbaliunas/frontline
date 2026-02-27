@@ -4,6 +4,7 @@ class_name Mob
 @export var speed: float = 75
 @export var max_health: float = 100
 
+
 var health: float
 
 # Max and min scale decides the scaling amount when damage is taken
