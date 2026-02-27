@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name Mob
 
-@export var speed: float = 200
+@export var speed: float = 75
 @export var max_health: float = 100
 
 var health: float
@@ -10,6 +11,7 @@ var health: float
 
 func _ready() -> void:
 	health = max_health
+	add_to_group("mobs")
 
 func _process(delta: float) -> void:
 
