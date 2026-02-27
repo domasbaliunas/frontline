@@ -27,6 +27,7 @@ func _on_resumebutton_pressed() -> void:
 func _on_restartbutton_pressed() -> void:
 	resume()
 	get_tree().reload_current_scene()
+	Currency.coins = 0
 
 func _on_quitbutton_pressed() -> void:
 	get_tree().quit()
