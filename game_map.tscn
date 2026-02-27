@@ -863,10 +863,10 @@ theme_override_font_sizes/font_size = 25
 script = ExtResource("3_5fonf")
 
 [node name="HP" type="Label" parent="CanvasLayer" unique_id=1784496523]
-offset_left = 1059.0
-offset_top = -5.0
-offset_right = 1155.0
-offset_bottom = 56.0
+offset_left = 920.0
+offset_top = -3.0
+offset_right = 1016.0
+offset_bottom = 58.0
 theme_override_colors/font_color = Color(0.99607843, 0, 0.07450981, 1)
 theme_override_font_sizes/font_size = 38
 text = "10❤"
