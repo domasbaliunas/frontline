@@ -1,22 +1,7 @@
 extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-
-@onready var pause_menu: Control = $CanvasLayer/PauseMenu
+@onready var pause_menu: Control = $PauseMenuGroup/CanvasLayer/PauseMenu
 
 func _on_texture_button_pressed() -> void:
 	pause_menu.pause()
-	
-	
-	
-	
+	pause_menu.visible = true
