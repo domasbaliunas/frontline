@@ -5,7 +5,6 @@ class_name Mob
 @export var max_health: float = 100
 
 var health: float
-var mob = preload("res://Mobs/mob.tscn")
 
 # Max and min scale decides the scaling amount when damage is taken
 # To damage mobs use take_damage()
