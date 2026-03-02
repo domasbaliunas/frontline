@@ -7,17 +7,6 @@ func _ready():
 	update_text(displayed_amount)
 	Currency.coins_changed.connect(animate_to)
 
-	start_auto_test()
-
-# To test the functionality of currency.gd 
-func start_auto_test():
-	while true:
-		await get_tree().create_timer(1.0).timeout
-		Currency.add_coins(10)
-
-		await get_tree().create_timer(1.0).timeout
-		Currency.spend_coins(5)
-
 func animate_to(new_amount):
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.15, 1.15), 0.08)

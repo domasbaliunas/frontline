@@ -3,6 +3,7 @@ class_name Mob
 
 @export var speed: float = 75
 @export var max_health: float = 100
+@export var coin_reward: int = 10
 
 
 var health: float
@@ -38,6 +39,7 @@ func take_damage(amount: float) -> void:
 		
 func die() -> void:
 	print("Mob died!")
+	Currency.add_coins(coin_reward)
 	queue_free()
 	
 	# Test senario (Press space to damage)
