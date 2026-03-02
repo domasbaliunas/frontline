@@ -3,8 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://tower.png" id="1_arn3v"]
 [ext_resource type="Script" uid="uid://cyy6b82swpp52" path="res://tower.gd" id="1_bn6qc"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
+radius = 313.0016
+
 [node name="Tower" type="Node2D" unique_id=805125601]
 script = ExtResource("1_bn6qc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1925869869]
 texture = ExtResource("1_arn3v")
+
+[node name="Tower" type="Area2D" parent="." unique_id=1168020171]
+position = Vector2(0, -17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower" unique_id=1838168117]
+position = Vector2(0, 18)
+shape = SubResource("CircleShape2D_usulm")
+
+[node name="Node" type="Node" parent="." unique_id=1022510012]

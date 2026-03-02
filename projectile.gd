@@ -21,4 +21,4 @@ func _process(delta: float) -> void:
 		
 # To be able to change damage based on enemy type
 func _determine_damage(target: Mob) -> int:
-	return 10
+	return 25
