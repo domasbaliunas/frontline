@@ -1,32 +1,35 @@
 extends CharacterBody2D
-class_name Mob
+class_name Enemy
 
 @export var speed: float = 75
 @export var max_health: float = 100
 @export var coin_reward: int = 10
 
-
 var health: float
+var path_follow: PathFollow2D
 
 # Max and min scale decides the scaling amount when damage is taken
 # To damage mobs use take_damage()
 
 func _ready() -> void:
 	health = max_health
+	path_follow = get_parent() as PathFollow2D
 	add_to_group("mobs")
 
 func _process(delta: float) -> void:
+	move_along_path(delta)
+	update_sprite_scale()
 
-	get_parent().set_progress(get_parent().get_progress() + speed * delta)
-	
-	if get_parent().get_progress_ratio() >= 1:
+func move_along_path(delta: float):
+	path_follow.progress += speed * delta
+	if path_follow.progress_ratio >= 1.0:
 		queue_free()
-	
+
+var min_scale = 0.5
+var max_scale = 1.0
+
+func update_sprite_scale():
 	var health_ratio = clamp(health / max_health, 0.0, 1.0)
-
-	var min_scale = 0.5
-	var max_scale = 1.0
-
 	var current_scale = min_scale + (health_ratio * (max_scale - min_scale))
 	scale = Vector2(current_scale, current_scale)
 

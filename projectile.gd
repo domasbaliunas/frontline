@@ -1,7 +1,7 @@
 extends Node2D
 
 var speed = 1000
-var target: Mob = null
+var target: Enemy = null
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -20,5 +20,5 @@ func _process(delta: float) -> void:
 		target.take_damage(_determine_damage(target))
 		
 # To be able to change damage based on enemy type
-func _determine_damage(target: Mob) -> int:
+func _determine_damage(target: Enemy) -> int:
 	return 25
