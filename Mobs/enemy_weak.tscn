@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dihisa5m8r5xd"]
+
+[ext_resource type="PackedScene" uid="uid://sgia5wphopvw" path="res://Mobs/enemy.tscn" id="1_sjijl"]
+[ext_resource type="Texture2D" uid="uid://ddxdshj8wafyh" path="res://Mobs/enemy_weak.png" id="2_biwi2"]
+
+[node name="EnemyWeak" unique_id=1987046420 instance=ExtResource("1_sjijl")]
+speed = 140.0
+max_health = 30.0
+
+[node name="Sprite2D" parent="." index="1" unique_id=514499075]
+texture = ExtResource("2_biwi2")

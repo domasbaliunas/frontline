@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d2k4gyace51e5" path="res://coins_label.gd" id="3_5fonf"]
 [ext_resource type="PackedScene" uid="uid://bgtlms3cakj63" path="res://Mobs/enemy_strong.tscn" id="3_55amd"]
 [ext_resource type="Script" uid="uid://0jaywn3aq4x8" path="res://hp.gd" id="4_hrtji"]
+[ext_resource type="PackedScene" uid="uid://dihisa5m8r5xd" path="res://Mobs/enemy_weak.tscn" id="4_qohhg"]
 [ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://player.tscn" id="4_tw6lq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
@@ -865,6 +866,13 @@ loop = false
 [node name="EnemyStrong" parent="Path2D/PathFollow2D2" unique_id=1674768350 instance=ExtResource("3_55amd")]
 position = Vector2(-0.9999999, -3.8146973e-06)
 coin_reward = 15
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D" unique_id=2123496330]
+position = Vector2(0, 61)
+rotation = -0.02969424
+loop = false
+
+[node name="EnemyWeak" parent="Path2D/PathFollow2D3" unique_id=1308309824 instance=ExtResource("4_qohhg")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=470883070]
 
