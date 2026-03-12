@@ -42,8 +42,8 @@ func _on_attack_timer_timeout():
 		attack(target)
 
 # Only look for Mob nodes in the "mobs" group
-func get_target() -> Mob:
-	var closest: Mob = null
+func get_target() -> Enemy:
+	var closest: Enemy = null
 	var closest_dist = INF
 	
 	for body in range_area.get_overlapping_bodies():
@@ -58,7 +58,7 @@ func get_target() -> Mob:
 			
 	return closest
 	
-func attack(target: Mob):
+func attack(target: Enemy):
 	if projectile_scene == null:
 		return
 	var proj = projectile_scene.instantiate()
