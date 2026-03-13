@@ -4,14 +4,16 @@ class_name DamagePopup
 @export var lifetime: float = 0.55
 @export var rise_speed: float = 85.0
 @export var font_size: int = 24
+@export var normal_color: Color = Color.WHITE
+@export var kill_color: Color = Color(1.0, 0.2, 0.2)
 
 var _elapsed: float = 0.0
 var _damage_text: String = ""
-var _base_color: Color = Color.WHITE
+var _text_color: Color = Color.WHITE
 
 func setup(damage: int, killed_enemy: bool) -> void:
 	_damage_text = str(max(damage, 0))
-	_base_color = Color(1.0, 0.2, 0.2) if killed_enemy else Color.WHITE
+	_text_color = kill_color if killed_enemy else normal_color
 	queue_redraw()
 
 func _process(delta: float) -> void:
@@ -32,7 +34,7 @@ func _draw() -> void:
 
 	var alpha := 1.0 - clampf(_elapsed / lifetime, 0.0, 1.0)
 	var text_size := font.get_string_size(_damage_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
-	var color := _base_color
+	var color := _text_color
 	color.a = alpha
 
 	# draw_string uses the baseline position, so we offset by ascent.
