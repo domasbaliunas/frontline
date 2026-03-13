@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+const DAMAGE_POPUP_SCRIPT = preload("res://damage_popup.gd")
+
 @export var speed: float = 75
 @export var max_health: float = 100
 @export var coin_reward: int = 10
@@ -34,11 +36,26 @@ func update_sprite_scale():
 	scale = Vector2(current_scale, current_scale)
 
 func take_damage(amount: float) -> void:
+	if health <= 0 or amount <= 0:
+		return
+
 	health -= amount
+	var is_killing_blow := health <= 0
+	_spawn_damage_popup(amount, is_killing_blow)
 	print("Mob health:", health)
 
-	if health <= 0:
+	if is_killing_blow:
 		die()
+
+func _spawn_damage_popup(amount: float, is_killing_blow: bool) -> void:
+	if get_tree() == null or get_tree().current_scene == null:
+		return
+
+	var popup: DamagePopup = DAMAGE_POPUP_SCRIPT.new()
+	popup.global_position = global_position + Vector2(0, -20)
+	popup.z_index = 200
+	popup.setup(int(round(amount)), is_killing_blow)
+	get_tree().current_scene.add_child(popup)
 		
 func die() -> void:
 	print("Mob died!")
