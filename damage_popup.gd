@@ -5,15 +5,19 @@ class_name DamagePopup
 @export var rise_speed: float = 85.0
 @export var font_size: int = 24
 @export var normal_color: Color = Color.WHITE
+@export var critical_color: Color = Color(1.0, 0.9, 0.2)
 @export var kill_color: Color = Color(1.0, 0.2, 0.2)
 
 var _elapsed: float = 0.0
 var _damage_text: String = ""
 var _text_color: Color = Color.WHITE
 
-func setup(damage: int, killed_enemy: bool) -> void:
+func setup(damage: int, killed_enemy: bool, critical_hit: bool = false) -> void:
 	_damage_text = str(max(damage, 0))
-	_text_color = kill_color if killed_enemy else normal_color
+	if critical_hit:
+		_text_color = critical_color
+	else:
+		_text_color = kill_color if killed_enemy else normal_color
 	queue_redraw()
 
 func _process(delta: float) -> void:
