@@ -1,9 +1,21 @@
 extends CharacterBody2D
 class_name Enemy
 
+const DAMAGE_POPUP_SCRIPT = preload("res://damage_popup.gd")
+
 @export var speed: float = 75
 @export var max_health: float = 100
 @export var coin_reward: int = 10
+
+@export_group("Damage Popup")
+@export var damage_popup_offset: Vector2 = Vector2(0, -20)
+@export var damage_popup_random_offset: Vector2 = Vector2(8, 4)
+@export var damage_popup_z_index: int = 200
+@export var damage_popup_lifetime: float = 0.55
+@export var damage_popup_rise_speed: float = 85.0
+@export var damage_popup_font_size: int = 24
+@export var damage_popup_normal_color: Color = Color.WHITE
+@export var damage_popup_kill_color: Color = Color(1.0, 0.2, 0.2)
 
 var health: float
 var path_follow: PathFollow2D
@@ -34,11 +46,35 @@ func update_sprite_scale():
 	scale = Vector2(current_scale, current_scale)
 
 func take_damage(amount: float) -> void:
+	if health <= 0 or amount <= 0:
+		return
+
 	health -= amount
+	var is_killing_blow := health <= 0
+	_spawn_damage_popup(amount, is_killing_blow)
 	print("Mob health:", health)
 
-	if health <= 0:
+	if is_killing_blow:
 		die()
+
+func _spawn_damage_popup(amount: float, is_killing_blow: bool) -> void:
+	if get_tree() == null or get_tree().current_scene == null:
+		return
+
+	var popup: DamagePopup = DAMAGE_POPUP_SCRIPT.new()
+	var random_offset := Vector2(
+		randf_range(-damage_popup_random_offset.x, damage_popup_random_offset.x),
+		randf_range(-damage_popup_random_offset.y, damage_popup_random_offset.y)
+	)
+	popup.global_position = global_position + damage_popup_offset + random_offset
+	popup.z_index = damage_popup_z_index
+	popup.lifetime = damage_popup_lifetime
+	popup.rise_speed = damage_popup_rise_speed
+	popup.font_size = damage_popup_font_size
+	popup.normal_color = damage_popup_normal_color
+	popup.kill_color = damage_popup_kill_color
+	popup.setup(int(round(amount)), is_killing_blow)
+	get_tree().current_scene.add_child(popup)
 		
 func die() -> void:
 	print("Mob died!")
