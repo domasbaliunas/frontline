@@ -17,6 +17,7 @@ const PATH_TILE_ID = 0
 func _ready() -> void:
 	if MeniuMusic:
 		MeniuMusic.stop()
+		GameMusic.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_tower"):
