@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsce3n8fkrtsh"
+path="res://.godot/imported/Medieval England - Anon. 1225_ Miri it is while sumer ilast.mp3-a4ed3412376ab4843fa15ef872513c88.mp3str"
+
+[deps]
+
+source_file="res://struct/Music/Medieval England - Anon. 1225_ Miri it is while sumer ilast.mp3"
+dest_files=["res://.godot/imported/Medieval England - Anon. 1225_ Miri it is while sumer ilast.mp3-a4ed3412376ab4843fa15ef872513c88.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
