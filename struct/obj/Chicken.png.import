@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drj573u2f24si"
-path="res://.godot/imported/TileSet.png-9c726bff3df19406d8ad21e114830a42.ctex"
+uid="uid://bolyxhciyhyq0"
+path="res://.godot/imported/Chicken.png-1143c1c479be4ab7ffffd3ca00d7d1a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileSet.png"
-dest_files=["res://.godot/imported/TileSet.png-9c726bff3df19406d8ad21e114830a42.ctex"]
+source_file="res://struct/obj/Chicken.png"
+dest_files=["res://.godot/imported/Chicken.png-1143c1c479be4ab7ffffd3ca00d7d1a8.ctex"]
 
 [params]
 
