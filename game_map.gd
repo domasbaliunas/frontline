@@ -13,6 +13,10 @@ var _tower_dummy = tower_scene.instantiate()
 
 # TileMapLayer terrain ID for path tiles
 const PATH_TILE_ID = 0
+#Stops Main meniu music once game starts
+func _ready() -> void:
+	if MeniuMusic:
+		MeniuMusic.stop()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_tower"):
