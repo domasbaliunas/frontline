@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://bgtlms3cakj63"]
 
 [ext_resource type="PackedScene" uid="uid://sgia5wphopvw" path="res://Mobs/enemy.tscn" id="1_s8i22"]
-[ext_resource type="Texture2D" uid="uid://b3hj4cjo0gmkq" path="res://Mobs/enemy_strong.png" id="2_d3ue5"]
+[ext_resource type="Texture2D" uid="uid://c8gyut63oag8x" path="res://Mobs/tractorStrong.png" id="2_d3ue5"]
 
 [node name="EnemyStrong" unique_id=1987046420 instance=ExtResource("1_s8i22")]
 speed = 40.0
 max_health = 400.0
 
 [node name="Sprite2D" parent="." index="1" unique_id=514499075]
+scale = Vector2(1.2, 1.17)
 texture = ExtResource("2_d3ue5")
