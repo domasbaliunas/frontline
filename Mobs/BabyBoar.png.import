@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddxdshj8wafyh"
-path="res://.godot/imported/enemy_weak.png-b483be359dfaca04cc9f9d463360a298.ctex"
+uid="uid://b188k0gu0uuv0"
+path="res://.godot/imported/BabyBoar.png-ba417c962862b15a8afbdf4169fe00d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mobs/enemy_weak.png"
-dest_files=["res://.godot/imported/enemy_weak.png-b483be359dfaca04cc9f9d463360a298.ctex"]
+source_file="res://Mobs/BabyBoar.png"
+dest_files=["res://.godot/imported/BabyBoar.png-ba417c962862b15a8afbdf4169fe00d6.ctex"]
 
 [params]
 
