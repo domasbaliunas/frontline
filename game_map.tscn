@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://0jaywn3aq4x8" path="res://hp.gd" id="4_hrtji"]
 [ext_resource type="PackedScene" uid="uid://dihisa5m8r5xd" path="res://Mobs/enemy_weak.tscn" id="4_qohhg"]
 [ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://player.tscn" id="4_tw6lq"]
+[ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://Coin.png" id="7_g3l8d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
 texture = ExtResource("1_gcorv")
@@ -876,12 +877,6 @@ loop = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=470883070]
 
-[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=2099452816]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 25
-script = ExtResource("3_5fonf")
-
 [node name="HP" type="Label" parent="CanvasLayer" unique_id=1784496523]
 offset_left = 920.0
 offset_top = -3.0
@@ -892,6 +887,25 @@ theme_override_font_sizes/font_size = 38
 text = "10❤"
 horizontal_alignment = 1
 script = ExtResource("4_hrtji")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=657262974]
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 96.0
+offset_bottom = 42.0
+theme_override_constants/separation = 4
+
+[node name="Coin" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=973354165]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("7_g3l8d")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=2099452816]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+script = ExtResource("3_5fonf")
 
 [node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
 position = Vector2(1026, 624)
