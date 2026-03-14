@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drj573u2f24si"
-path="res://.godot/imported/New Piskel.png-4b57200a9b5d4d6f89cce1bdbbdb2eec.ctex"
+uid="uid://cn53qctrs21xs"
+path="res://.godot/imported/SenasTileSet.png-62062be3ab7b0e09b96b3ccd034d2441.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://New Piskel.png"
-dest_files=["res://.godot/imported/New Piskel.png-4b57200a9b5d4d6f89cce1bdbbdb2eec.ctex"]
+source_file="res://SenasTileSet.png"
+dest_files=["res://.godot/imported/SenasTileSet.png-62062be3ab7b0e09b96b3ccd034d2441.ctex"]
 
 [params]
 
