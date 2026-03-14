@@ -7,4 +7,4 @@ func _ready() -> void:
 	update_text()
 
 func update_text():
-	text = str(hp) + "❤"
+	text = str(hp)
