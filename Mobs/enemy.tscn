@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sgia5wphopvw"]
 
 [ext_resource type="Script" uid="uid://m8bt8lcm5b7k" path="res://Mobs/enemy.gd" id="1_3ogw4"]
-[ext_resource type="Texture2D" uid="uid://cwgem7x8257yg" path="res://Mobs/JKUBAS.png" id="1_npuaf"]
+[ext_resource type="Texture2D" uid="uid://by57jnwljp63v" path="res://Mobs/Man.png" id="2_2kdye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6b5h"]
 size = Vector2(14, 14)
@@ -14,6 +14,7 @@ script = ExtResource("1_3ogw4")
 shape = SubResource("RectangleShape2D_r6b5h")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=514499075]
-position = Vector2(-0.2500003, 0)
-scale = Vector2(0.640625, 0.625)
-texture = ExtResource("1_npuaf")
+position = Vector2(10, -26)
+scale = Vector2(1.029, 1)
+texture = ExtResource("2_2kdye")
+offset = Vector2(0, 10)
