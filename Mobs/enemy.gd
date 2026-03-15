@@ -15,6 +15,7 @@ const DAMAGE_POPUP_SCRIPT = preload("res://damage_popup.gd")
 @export var damage_popup_rise_speed: float = 85.0
 @export var damage_popup_font_size: int = 24
 @export var damage_popup_normal_color: Color = Color.WHITE
+@export var damage_popup_critical_color: Color = Color(1.0, 0.9, 0.2)
 @export var damage_popup_kill_color: Color = Color(1.0, 0.2, 0.2)
 
 var health: float
@@ -45,19 +46,19 @@ func update_sprite_scale():
 	var current_scale = min_scale + (health_ratio * (max_scale - min_scale))
 	scale = Vector2(current_scale, current_scale)
 
-func take_damage(amount: float) -> void:
+func take_damage(amount: float, is_critical_hit: bool = false) -> void:
 	if health <= 0 or amount <= 0:
 		return
 
 	health -= amount
 	var is_killing_blow := health <= 0
-	_spawn_damage_popup(amount, is_killing_blow)
+	_spawn_damage_popup(amount, is_killing_blow, is_critical_hit)
 	print("Mob health:", health)
 
 	if is_killing_blow:
 		die()
 
-func _spawn_damage_popup(amount: float, is_killing_blow: bool) -> void:
+func _spawn_damage_popup(amount: float, is_killing_blow: bool, is_critical_hit: bool) -> void:
 	if get_tree() == null or get_tree().current_scene == null:
 		return
 
@@ -72,8 +73,9 @@ func _spawn_damage_popup(amount: float, is_killing_blow: bool) -> void:
 	popup.rise_speed = damage_popup_rise_speed
 	popup.font_size = damage_popup_font_size
 	popup.normal_color = damage_popup_normal_color
+	popup.critical_color = damage_popup_critical_color
 	popup.kill_color = damage_popup_kill_color
-	popup.setup(int(round(amount)), is_killing_blow)
+	popup.setup(int(round(amount)), is_killing_blow, is_critical_hit)
 	get_tree().current_scene.add_child(popup)
 		
 func die() -> void:

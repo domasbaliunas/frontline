@@ -1,7 +1,9 @@
 extends Node2D
 
-var speed = 1000
+var speed: float = 1000.0
 var target: Enemy = null
+var damage: float = 25.0
+var is_critical_hit: bool = false
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,9 +18,9 @@ func _process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 	if global_position.distance_to(target.global_position) < 10:
+		target.take_damage(_determine_damage(target), is_critical_hit)
 		queue_free()
-		target.take_damage(_determine_damage(target))
 		
 # To be able to change damage based on enemy type
-func _determine_damage(target: Enemy) -> int:
-	return 25
+func _determine_damage(_target: Enemy) -> float:
+	return maxf(damage, 0.0)
