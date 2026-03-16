@@ -14,11 +14,8 @@ var projectile_scene: PackedScene = preload("res://Projectile.tscn")
 var attack_timer: Timer
 var range_value: float
 var shots_fired: int = 0
+@export var cost: int = 100  
 
-# Range by default is set by the value of CollisionShape2D. set_range function allows
-# to change the range from default. This can be used if range upgrades would be implemented.
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var shape_node = range_area.get_node("CollisionShape2D")
 	if shape_node and shape_node.shape is CircleShape2D:
@@ -86,7 +83,6 @@ func attack(target: Enemy):
 	
 func _on_click_area_input(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("clicked")
 		var menu = get_tree().get_first_node_in_group("tower_menu")
 		if menu:
 			menu.open_menu(self)

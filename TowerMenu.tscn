@@ -28,3 +28,5 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=231600597]
 layout_mode = 2
 text = "Sell"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_sell_pressed"]
