@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var range_area: Area2D = $Tower
 @export var attack_speed: float = 0.75
+@onready var area = $Area2D
 
 @export_group("Damage")
 @export var base_damage: float = 25.0
@@ -30,6 +31,8 @@ func _ready() -> void:
 	attack_timer.autostart = true
 	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))
 	add_child(attack_timer)
+	
+	area.input_event.connect(_on_click_area_input)
 	
 	# set_range(200)
 		
@@ -80,3 +83,10 @@ func attack(target: Enemy):
 	proj.damage = final_damage
 	proj.is_critical_hit = is_critical_hit
 	get_tree().current_scene.add_child(proj)
+	
+func _on_click_area_input(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print("clicked")
+		var menu = get_tree().get_first_node_in_group("tower_menu")
+		if menu:
+			menu.open_menu(self)
