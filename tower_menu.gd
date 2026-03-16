@@ -4,6 +4,7 @@ var selected_tower = null
 @onready var panel = $Panel
 @onready var label = $Panel/VBoxContainer/Label
 @onready var sell_button = $Panel/VBoxContainer/SellButton
+const coef = 0.7
 
 func _ready():
 	add_to_group("tower_menu")
@@ -22,7 +23,7 @@ func close_menu():
 func _on_sell_pressed():
 	if selected_tower == null:
 		return
-	var refund = int(selected_tower.cost * 0.7)
+	var refund = int(selected_tower.cost * coef)
 	Currency.add_coins(refund)
 
 	selected_tower.queue_free()
