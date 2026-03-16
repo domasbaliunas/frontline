@@ -4,7 +4,6 @@ extends Control
 @onready var mute_btn = $MuteButton
 
 func _ready():
-	# Sync UI with current global settings
 	slider.value = MeniuMusic.music_volume
 	slider.value = GameMusic.music_volume
 	slider.editable = !MeniuMusic.muted

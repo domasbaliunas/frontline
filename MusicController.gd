@@ -11,7 +11,6 @@ func apply_settings():
 		self.volume_db = -80
 	else:
 		self.volume_db = linear_to_db(music_volume)
-		print("Tikrasis grotuvo volume_db: ", self.volume_db)
 	
 func toggle_mute(is_muted: bool):
 	muted = is_muted
