@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bdbbjd4cfvlj" path="res://settings (2).png" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://l5wudpbitajw" path="res://game.gd" id="1_xkndl"]
+[ext_resource type="PackedScene" uid="uid://cjyj4itibef8c" path="res://TowerMenu.tscn" id="2_3mrqo"]
 [ext_resource type="Script" uid="uid://b4y3wtdqc7v6i" path="res://game_map.gd" id="3_t88pq"]
 [ext_resource type="PackedScene" uid="uid://djjycrn0muqdt" path="res://pause_menu.tscn" id="3_u44n3"]
 [ext_resource type="PackedScene" uid="uid://bfk8wbdn5lpvn" path="res://game_map.tscn" id="4_sb48q"]
@@ -9,6 +10,8 @@
 
 [node name="Game" type="Node2D" unique_id=225877384]
 script = ExtResource("1_xkndl")
+
+[node name="TowerMenu" parent="." unique_id=189180297 instance=ExtResource("2_3mrqo")]
 
 [node name="Map" parent="." unique_id=782828480 instance=ExtResource("4_sb48q")]
 script = ExtResource("3_t88pq")
