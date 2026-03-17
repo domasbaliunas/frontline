@@ -26,10 +26,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func place_tower() -> void:
 	var mouse_pos = get_global_mouse_position()
-	var sprite = _tower_dummy.get_node("Sprite2D")
-	var sprite_size = sprite.texture.get_size()
 	
-	if is_tower_already_at(mouse_pos) or is_over_path(mouse_pos, sprite_size):
+	if is_tower_already_at(mouse_pos) or is_over_path(mouse_pos):
 		print("Cannot place tower at ", mouse_pos)
 		return
 	
@@ -51,27 +49,79 @@ func is_tower_already_at(pos: Vector2) -> bool:
 				return true
 	return false
 
-func is_over_path(tower_pos: Vector2, sprite_size: Vector2) -> bool:
-	# Get the corners of the sprite
-	var half_size = sprite_size / 2
-	var corners = [
-		tower_pos + Vector2(-half_size.x, -half_size.y),  # top-left
-		tower_pos + Vector2(half_size.x, -half_size.y),   # top-right
-		tower_pos + Vector2(-half_size.x, half_size.y),   # bottom-left
-		tower_pos + Vector2(half_size.x, half_size.y)     # bottom-right
-	]
+func _get_tower_footprint_polygon(tower_pos: Vector2) -> PackedVector2Array:
+	var area: Area2D = _tower_dummy.get_node_or_null("Area2D")
+	if area == null:
+		return PackedVector2Array()
 
-	for corner in corners:
-		# Convert global position → local TileMapLayer space
-		var local_corner = tilemap.to_local(corner)
-		# Convert local position → tile coordinates
-		var cell = tilemap.local_to_map(local_corner)
-		# Get the TileData at this cell
-		var tile_data = tilemap.get_cell_tile_data(cell)
-		if tile_data == null:
-			continue  # empty cell
-		if tile_data.terrain == PATH_TILE_ID:
-			return true  # one corner touches path → invalid placement
+	var shape_node: CollisionShape2D = area.get_node_or_null("CollisionShape2D")
+	if shape_node == null or shape_node.shape == null:
+		return PackedVector2Array()
 
-	return false  # all corners are clear
+	var shape_transform = Transform2D(0.0, tower_pos) * area.transform * shape_node.transform
+	var polygon := PackedVector2Array()
+
+	if shape_node.shape is RectangleShape2D:
+		var rect_shape = shape_node.shape as RectangleShape2D
+		var half_size = rect_shape.size / 2.0
+		var local_points = [
+			Vector2(-half_size.x, -half_size.y),
+			Vector2(half_size.x, -half_size.y),
+			Vector2(half_size.x, half_size.y),
+			Vector2(-half_size.x, half_size.y)
+		]
+		for point in local_points:
+			polygon.append(shape_transform * point)
+		return polygon
+
+	if shape_node.shape is CircleShape2D:
+		var circle_shape = shape_node.shape as CircleShape2D
+		var sample_count = 16
+		for i in sample_count:
+			var angle = TAU * float(i) / float(sample_count)
+			var local_point = Vector2(cos(angle), sin(angle)) * circle_shape.radius
+			polygon.append(shape_transform * local_point)
+		return polygon
+
+	return PackedVector2Array()
+
+func is_over_path(tower_pos: Vector2) -> bool:
+	if tilemap.tile_set == null:
+		return false
+
+	var footprint = _get_tower_footprint_polygon(tower_pos)
+	if footprint.is_empty():
+		return false
+
+	var min_point = Vector2(INF, INF)
+	var max_point = Vector2(-INF, -INF)
+	for point in footprint:
+		min_point.x = min(min_point.x, point.x)
+		min_point.y = min(min_point.y, point.y)
+		max_point.x = max(max_point.x, point.x)
+		max_point.y = max(max_point.y, point.y)
+
+	var min_cell = tilemap.local_to_map(tilemap.to_local(min_point))
+	var max_cell = tilemap.local_to_map(tilemap.to_local(max_point))
+	var half_tile = Vector2(tilemap.tile_set.tile_size) / 2.0
+
+	for x in range(min_cell.x, max_cell.x + 1):
+		for y in range(min_cell.y, max_cell.y + 1):
+			var cell = Vector2i(x, y)
+			var tile_data = tilemap.get_cell_tile_data(cell)
+			if tile_data == null or tile_data.terrain != PATH_TILE_ID:
+				continue
+
+			var tile_center = tilemap.to_global(tilemap.map_to_local(cell))
+			var tile_polygon := PackedVector2Array([
+				tile_center + Vector2(-half_tile.x, -half_tile.y),
+				tile_center + Vector2(half_tile.x, -half_tile.y),
+				tile_center + Vector2(half_tile.x, half_tile.y),
+				tile_center + Vector2(-half_tile.x, half_tile.y)
+			])
+
+			if not Geometry2D.intersect_polygons(footprint, tile_polygon).is_empty():
+				return true
+
+	return false
 	
