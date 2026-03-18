@@ -39,8 +39,10 @@ func _process(delta: float) -> void:
 	
 func set_range(new_range: float) -> void:
 	range_value = new_range
+	
 	var shape_node = range_area.get_node("CollisionShape2D")
-	if shape_node and shape_node.shape is CircleShape2D:
+	if shape_node and shape_node.shape:
+		shape_node.shape = shape_node.shape.duplicate() # 👈 svarbiausia eilutė
 		shape_node.shape.radius = new_range
 
 func _on_attack_timer_timeout():
