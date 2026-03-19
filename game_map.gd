@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var tilemap = $TileMapLayer
 
+var money_factory_scene = preload("res://money_factory.tscn")
+var placing_money_factory : bool = false
+
 var tower_scene = preload("res://Tower.tscn")
 var long_tower_scene = preload("res://SniperTower.tscn")
 var basic_tower_scene = preload("res://Tower.tscn")
@@ -29,7 +32,28 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("spawn_basic_tower"):
 		tower_scene = basic_tower_scene
 		place_tower()
-		
+	
+	if event.is_action_pressed("money_factory"):
+		placing_money_factory = true
+		place_money_factory()
+	
+
+func place_money_factory() -> void:
+	var mouse_pos = get_global_mouse_position()
+	
+	if is_tower_already_at(mouse_pos) or is_over_path(mouse_pos):
+		print("Cannot place money factory at ", mouse_pos)
+		return
+	
+	var factory = money_factory_scene.instantiate()
+	factory.position = mouse_pos
+	factory.name = "MoneyFactory#" + str(tower_id)
+	factory.add_to_group("towers")
+	tower_id += 1
+	add_child(factory)
+	print("Placed money factory at ", mouse_pos)
+	
+
 func place_tower() -> void:
 	var mouse_pos = get_global_mouse_position()
 	
