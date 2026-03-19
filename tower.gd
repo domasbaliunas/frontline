@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var range_area: Area2D = $Tower
+@onready var range_shape_node: CollisionShape2D = $Tower/CollisionShape2D
 @export var attack_speed: float = 0.75
 @onready var area = $Area2D
 
@@ -13,13 +14,15 @@ var projectile_scene: PackedScene = preload("res://Projectile.tscn")
 
 var attack_timer: Timer
 var range_value: float
+var range_shape: CircleShape2D
 var shots_fired: int = 0
 @export var cost: int = 100  
 
 func _ready() -> void:
-	var shape_node = range_area.get_node("CollisionShape2D")
-	if shape_node and shape_node.shape is CircleShape2D:
-		range_value = shape_node.shape.radius
+	if range_shape_node and range_shape_node.shape is CircleShape2D:
+		range_shape = (range_shape_node.shape as CircleShape2D).duplicate()
+		range_shape_node.shape = range_shape
+		range_value = range_shape.radius
 
 	add_to_group("towers", true)
 	attack_timer = Timer.new()
@@ -39,11 +42,9 @@ func _process(delta: float) -> void:
 	
 func set_range(new_range: float) -> void:
 	range_value = new_range
-	
-	var shape_node = range_area.get_node("CollisionShape2D")
-	if shape_node and shape_node.shape:
-		shape_node.shape = shape_node.shape.duplicate() # 👈 svarbiausia eilutė
-		shape_node.shape.radius = new_range
+
+	if range_shape:
+		range_shape.radius = new_range
 
 func _on_attack_timer_timeout():
 	var target = get_target()

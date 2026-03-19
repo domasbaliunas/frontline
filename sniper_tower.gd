@@ -1,12 +1,12 @@
 
 extends "res://tower.gd"
 
-func _ready():
+const SNIPER_BASE_DAMAGE := 100.0
+const SNIPER_ATTACK_SPEED := 0.1
+const SNIPER_RANGE := 99999.0
+
+func _ready() -> void:
+	base_damage = SNIPER_BASE_DAMAGE
+	attack_speed = SNIPER_ATTACK_SPEED
 	super._ready()
-	
-	base_damage = 100
-	attack_speed = 0.0667
-	
-	set_range(99999)
-	
-	attack_timer.wait_time = 1.0 / attack_speed
+	set_range(SNIPER_RANGE)
