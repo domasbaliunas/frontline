@@ -6,6 +6,8 @@ var money_factory_scene = preload("res://money_factory.tscn")
 var placing_money_factory : bool = false
 
 var tower_scene = preload("res://Tower.tscn")
+var long_tower_scene = preload("res://SniperTower.tscn")
+var basic_tower_scene = preload("res://Tower.tscn")
 var placing_tower: bool = false
 var distance_apart: int = 5
 var tower_id: int = 1
@@ -23,8 +25,12 @@ func _ready() -> void:
 		GameMusic.play()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("place_tower"):
-		placing_tower = true
+	if event.is_action_pressed("spawn_sniper_tower"):
+		tower_scene = long_tower_scene
+		place_tower()
+
+	if event.is_action_pressed("spawn_basic_tower"):
+		tower_scene = basic_tower_scene
 		place_tower()
 	
 	if event.is_action_pressed("money_factory"):
