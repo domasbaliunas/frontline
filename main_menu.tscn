@@ -1,16 +1,30 @@
 [gd_scene format=3 uid="uid://cwwgs8vq0dfv4"]
 
 [ext_resource type="Script" uid="uid://dn12u7ocbrg15" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://dh3fgye6h0ttt" path="res://Menu_Background.png" id="2_7vrkn"]
+[ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://Enchanted Land.otf" id="3_fu7sn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+bg_color = Color(0.81960785, 0.6509804, 0.3019608, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48520184, 0.30986747, 0.15517846, 1)
+border_blend = true
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+anti_aliasing_size = 0.01
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
-bg_color = Color(0.7807016, 0.7807017, 0.7807016, 1)
+bg_color = Color(0.7043072, 0.5519694, 0.23108351, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4862745, 0.30980393, 0.15686275, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -27,78 +41,88 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
 
-[node name="QuitButton" type="Button" parent="." unique_id=955609950]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.75
-offset_top = 116.0
-offset_right = 99.75
-offset_bottom = 173.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rhts7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_rhts7")
-text = "Quit game"
+[node name="TextureRect" type="TextureRect" parent="." unique_id=966199411]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 1024.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_7vrkn")
 
-[node name="NewGameButton" type="Button" parent="." unique_id=393129009]
+[node name="NewGameButton" type="Button" parent="TextureRect" unique_id=393129009]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -44.0
-offset_right = 99.5
-offset_bottom = 13.0
+offset_left = -113.33331
+offset_top = -151.99997
+offset_right = 86.16669
+offset_bottom = -94.99997
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_fu7sn")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rhts7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rhts7")
 text = "New game"
 
-[node name="OptionsButton" type="Button" parent="." unique_id=318467255]
+[node name="QuitButton" type="Button" parent="TextureRect" unique_id=955609950]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 36.0
-offset_right = 99.5
-offset_bottom = 93.0
+offset_left = -112.0
+offset_top = 25.333313
+offset_right = 87.5
+offset_bottom = 82.33331
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_fu7sn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rhts7")
+text = "Quit game"
+
+[node name="OptionsButton" type="Button" parent="TextureRect" unique_id=318467255]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.666626
+offset_top = -66.66666
+offset_right = 84.833374
+offset_bottom = -9.6666565
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_fu7sn")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rhts7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rhts7")
 text = "Options"
 
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="TextureRect/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="TextureRect/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="TextureRect/OptionsButton" to="." method="_on_options_button_pressed"]
