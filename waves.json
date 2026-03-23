@@ -1,0 +1,122 @@
+[
+	{
+		"_wave": 1,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 2,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 3,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 4,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 5,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 6,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 7,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 8,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 9,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 10,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 11,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 12,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 13,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 14,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 15,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 16,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 17,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 18,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 19,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	},
+	{
+		"_wave": 20,
+		"enemies": [
+			{ "type": "standard", "count": 2, "delay": 2.0 }
+		]
+	}
+]
