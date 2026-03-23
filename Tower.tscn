@@ -29,3 +29,6 @@ shape = SubResource("CircleShape2D_usulm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=927817570]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_bn6qc")
+
+[node name="RangeCircle" type="Polygon2D" parent="." unique_id=1564258127]
+color = Color(0, 0, 0, 0.007843138)
