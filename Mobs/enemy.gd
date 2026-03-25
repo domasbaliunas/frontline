@@ -87,7 +87,3 @@ func die() -> void:
 func _input(event):
 	if event.is_action_pressed("ui_accept"):  
 		take_damage(25)
-
-
-func _on_tower_b_pressed() -> void:
-	pass # Replace with function body.

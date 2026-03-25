@@ -25,25 +25,6 @@ func _ready() -> void:
 		MeniuMusic.stop()
 		GameMusic.play()
 
-
-##func _unhandled_input(event: InputEvent) -> void:
-##	if event.is_action_pressed("spawn_sniper_tower"):
-##		tower_scene = long_tower_scene
-##		place_tower()
-##		
-##	if event is InputEventMouseButton and event.pressed:
-##		for tower in get_tree().get_nodes_in_group("towers"):
-##			if tower.has_method("set_range_visible"):
-##				tower.set_range_visible(false)
-##
-##	if event.is_action_pressed("spawn_basic_tower"):
-##		tower_scene = basic_tower_scene
-##		place_tower()
-##	
-##	if event.is_action_pressed("money_factory"):
-##		placing_money_factory = true
-##		place_money_factory()
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		
