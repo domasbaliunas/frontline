@@ -51,9 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if selected != "":
 			if selected == "Tower":
-				print("nahui1")
 				tower_scene = basic_tower_scene
-				print("nahui2")
 				place_tower()
 			elif selected == "Sniper":
 				tower_scene = long_tower_scene
@@ -88,7 +86,6 @@ func place_tower() -> void:
 		print("Cannot place tower at ", mouse_pos)
 		return
 	
-	print("nahui")
 	var tower = tower_scene.instantiate()
 	tower.position = mouse_pos
 	tower.name = "Tower#" + str(tower_id)

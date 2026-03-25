@@ -29,4 +29,4 @@ func _on_tower_b_pressed():
 		print("Tower Selected")
 		
 	else:
-		print("Ūbagas")
+		print("Not enaugh money")
