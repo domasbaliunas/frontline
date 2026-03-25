@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var tilemap = $TileMapLayer
 @onready var shop = $ShopCanvas
+@onready var path: Path2D = $Path2D
+@onready var wave_label: Label = $CanvasLayer/HBoxContainer3/WaveLabel
+@onready var player = $Player
 
 var money_factory_scene = preload("res://money_factory.tscn")
 var placing_money_factory : bool = false
@@ -13,17 +16,37 @@ var placing_tower: bool = false
 var distance_apart: int = 5
 var tower_id: int = 1
 
+var enemy_scenes := {
+	"standard": preload("res://Mobs/enemy.tscn"),
+	"weak": preload("res://Mobs/enemy_weak.tscn"),
+	"strong": preload("res://Mobs/enemy_strong.tscn")
+}
+
+var waves_data: Array = []
+var total_waves: int = 0
+var current_wave: int = 0
+var is_wave_flow_running: bool = false
+var is_game_over: bool = false
+
 # For getting sprite texture size and similar
 # Do not add or modify
 var _tower_dummy = tower_scene.instantiate()
 
 # TileMapLayer terrain ID for path tiles
 const PATH_TILE_ID = 0
+const WAVES_FILE_PATH = "res://waves.json"
+const MAX_WAVES = 20
 #Stops Main meniu music once game starts
 func _ready() -> void:
 	if MeniuMusic:
 		MeniuMusic.stop()
 		GameMusic.play()
+
+	_load_waves_data()
+	if total_waves > 0:
+		current_wave = 1
+		_update_wave_label()
+		_start_wave_flow()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -167,4 +190,110 @@ func is_over_path(tower_pos: Vector2) -> bool:
 				return true
 
 	return false
+
+func _load_waves_data() -> void:
+	waves_data.clear()
+	total_waves = 0
+
+	if not FileAccess.file_exists(WAVES_FILE_PATH):
+		push_error("waves.json file was not found")
+		return
+
+	var waves_file = FileAccess.open(WAVES_FILE_PATH, FileAccess.READ)
+	if waves_file == null:
+		push_error("Failed to open waves.json")
+		return
+
+	var json_text = waves_file.get_as_text()
+	var parsed = JSON.parse_string(json_text)
+	if typeof(parsed) != TYPE_ARRAY:
+		push_error("waves.json root must be an array")
+		return
+
+	waves_data = parsed
+	total_waves = min(MAX_WAVES, waves_data.size())
+
+	if total_waves == 0:
+		push_warning("No waves found in waves.json")
+	elif waves_data.size() < MAX_WAVES:
+		push_warning("waves.json has fewer than 20 waves")
+
+func _start_wave_flow() -> void:
+	if is_wave_flow_running:
+		return
+	is_wave_flow_running = true
+	call_deferred("_run_wave_flow")
+
+func _run_wave_flow() -> void:
+	for wave_number in range(1, total_waves + 1):
+		if _has_game_over():
+			break
+
+		current_wave = wave_number
+		_update_wave_label()
+		await _spawn_wave(wave_number)
+		await _wait_until_wave_is_clear()
+
+	is_wave_flow_running = false
+
+func _spawn_wave(wave_number: int) -> void:
+	if wave_number <= 0 or wave_number > waves_data.size():
+		return
+
+	var wave_data = waves_data[wave_number - 1] as Dictionary
+	var wave_enemies = wave_data.get("enemies", []) as Array
+
+	for group in wave_enemies:
+		var group_data = group as Dictionary
+		var enemy_type = str(group_data.get("type", "standard"))
+		var count = int(group_data.get("count", 0))
+		var delay_seconds = maxf(float(group_data.get("delay", 0.0)), 0.0)
+
+		for i in range(count):
+			if _has_game_over():
+				return
+
+			_spawn_enemy(enemy_type)
+			if delay_seconds > 0.0:
+				await get_tree().create_timer(delay_seconds).timeout
+
+func _spawn_enemy(enemy_type: String) -> void:
+	var enemy_scene: PackedScene = enemy_scenes.get(enemy_type)
+	if enemy_scene == null:
+		push_warning("Unknown enemy type: " + enemy_type)
+		return
+
+	var path_follow := PathFollow2D.new()
+	path_follow.loop = false
+	path.add_child(path_follow)
+
+	var enemy = enemy_scene.instantiate()
+	path_follow.add_child(enemy)
+	if enemy.has_signal("tree_exited"):
+		enemy.tree_exited.connect(path_follow.queue_free, CONNECT_ONE_SHOT)
+
+func _wait_until_wave_is_clear() -> void:
+	while true:
+		if _has_game_over():
+			return
+
+		if get_tree().get_nodes_in_group("mobs").is_empty():
+			return
+
+		await get_tree().process_frame
+
+func _has_game_over() -> bool:
+	if is_game_over:
+		return true
+
+	if player != null and player.has_method("get"):
+		var hp_value = player.get("hp")
+		if typeof(hp_value) == TYPE_INT and hp_value <= 0:
+			is_game_over = true
+
+	return is_game_over
+
+func _update_wave_label() -> void:
+	if wave_label:
+		wave_label.text = str(current_wave) + "/" + str(total_waves)
 	
