@@ -29,4 +29,4 @@ func _on_tower_b_pressed():
 		print("Tower Selected")
 		
 	else:
-		print("Not enaugh money")
+		print("Not enough money")

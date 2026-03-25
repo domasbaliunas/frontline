@@ -49,6 +49,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		var selected = shop.selected_tower_type 
 		
+		for tower in get_tree().get_nodes_in_group("towers"):
+			if tower.has_method("set_range_visible"):
+				tower.set_range_visible(false)
+		
 		if selected != "":
 			if selected == "Tower":
 				tower_scene = basic_tower_scene
