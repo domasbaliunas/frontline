@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tilemap = $TileMapLayer
+@onready var shop = $ShopCanvas
 
 var money_factory_scene = preload("res://money_factory.tscn")
 var placing_money_factory : bool = false
@@ -24,24 +25,42 @@ func _ready() -> void:
 		MeniuMusic.stop()
 		GameMusic.play()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("spawn_sniper_tower"):
-		tower_scene = long_tower_scene
-		place_tower()
-		
-	if event is InputEventMouseButton and event.pressed:
-		for tower in get_tree().get_nodes_in_group("towers"):
-			if tower.has_method("set_range_visible"):
-				tower.set_range_visible(false)
 
-	if event.is_action_pressed("spawn_basic_tower"):
-		tower_scene = basic_tower_scene
-		place_tower()
-	
-	if event.is_action_pressed("money_factory"):
-		placing_money_factory = true
-		place_money_factory()
-	
+##func _unhandled_input(event: InputEvent) -> void:
+##	if event.is_action_pressed("spawn_sniper_tower"):
+##		tower_scene = long_tower_scene
+##		place_tower()
+##		
+##	if event is InputEventMouseButton and event.pressed:
+##		for tower in get_tree().get_nodes_in_group("towers"):
+##			if tower.has_method("set_range_visible"):
+##				tower.set_range_visible(false)
+##
+##	if event.is_action_pressed("spawn_basic_tower"):
+##		tower_scene = basic_tower_scene
+##		place_tower()
+##	
+##	if event.is_action_pressed("money_factory"):
+##		placing_money_factory = true
+##		place_money_factory()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		
+		var selected = shop.selected_tower_type 
+		
+		if selected != "":
+			if selected == "Tower":
+				print("nahui1")
+				tower_scene = basic_tower_scene
+				print("nahui2")
+				place_tower()
+			elif selected == "Sniper":
+				tower_scene = long_tower_scene
+				place_tower()
+			elif selected == "Money":
+				place_money_factory()
+				 
 
 func place_money_factory() -> void:
 	var mouse_pos = get_global_mouse_position()
@@ -57,6 +76,9 @@ func place_money_factory() -> void:
 	tower_id += 1
 	add_child(factory)
 	print("Placed money factory at ", mouse_pos)
+	Currency.spend_coins(shop.price)
+	shop.price = 0
+	shop.selected_tower_type = ""
 	
 
 func place_tower() -> void:
@@ -66,12 +88,16 @@ func place_tower() -> void:
 		print("Cannot place tower at ", mouse_pos)
 		return
 	
+	print("nahui")
 	var tower = tower_scene.instantiate()
 	tower.position = mouse_pos
 	tower.name = "Tower#" + str(tower_id)
 	tower_id += 1
 	add_child(tower)
 	print("Placed tower at ", mouse_pos)
+	Currency.spend_coins(shop.price)
+	shop.price = 0
+	shop.selected_tower_type = ""
 
 func is_tower_already_at(pos: Vector2) -> bool:
 	for child in get_children():

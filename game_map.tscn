@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://struct/obj/Chicken.png" id="6_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://Coin.png" id="7_g3l8d"]
 [ext_resource type="Texture2D" uid="uid://d2t3ja0r5hles" path="res://potatoHP.png" id="13_bp2s2"]
+[ext_resource type="Script" uid="uid://dejcnlkc7crrj" path="res://shop_canvas.gd" id="15_7hf5s"]
+[ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://tower.png" id="15_mluw0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3l8d"]
 texture = ExtResource("1_qohhg")
@@ -552,3 +554,119 @@ texture = ExtResource("13_bp2s2")
 
 [node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
 position = Vector2(1026, 624)
+
+[node name="ShopCanvas" type="CanvasLayer" parent="." unique_id=1764928307]
+script = ExtResource("15_7hf5s")
+
+[node name="Button" type="Button" parent="ShopCanvas" unique_id=1689166284]
+offset_left = 1135.0
+offset_top = 240.0
+offset_right = 1160.0
+offset_bottom = 422.0
+toggle_mode = true
+action_mode = 0
+text = "<"
+
+[node name="PanelContainer" type="PanelContainer" parent="ShopCanvas/Button" unique_id=439462701]
+layout_mode = 0
+offset_left = 25.0
+offset_top = -146.0
+offset_right = 105.0
+offset_bottom = 356.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopCanvas/Button/PanelContainer" unique_id=1465156928]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1248773344]
+layout_mode = 2
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="Label12" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=445807209]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=906032011]
+layout_mode = 2
+text = "Tower"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Tower_B" type="TextureButton" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1008598978]
+layout_mode = 2
+texture_normal = ExtResource("15_mluw0")
+texture_pressed = ExtResource("15_mluw0")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1377969342]
+layout_mode = 2
+text = "10 coins"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=2194188]
+layout_mode = 2
+text = "Tower"
+horizontal_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=882053639]
+layout_mode = 2
+texture_normal = ExtResource("15_mluw0")
+texture_pressed = ExtResource("15_mluw0")
+stretch_mode = 3
+
+[node name="Label7" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=920691808]
+layout_mode = 2
+text = "10 coins"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=526534987]
+layout_mode = 2
+text = "Tower"
+horizontal_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1934109175]
+layout_mode = 2
+texture_normal = ExtResource("15_mluw0")
+texture_pressed = ExtResource("15_mluw0")
+stretch_mode = 3
+
+[node name="Label4" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1800764655]
+layout_mode = 2
+text = "10 coins"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1364370948]
+layout_mode = 2
+text = "Tower"
+horizontal_alignment = 1
+
+[node name="TextureButton4" type="TextureButton" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=878569323]
+layout_mode = 2
+texture_normal = ExtResource("15_mluw0")
+texture_pressed = ExtResource("15_mluw0")
+stretch_mode = 3
+
+[node name="Label9" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1106219438]
+layout_mode = 2
+text = "10 coins"
+horizontal_alignment = 1
+
+[node name="Label10" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1707757525]
+layout_mode = 2
+text = "Tower"
+horizontal_alignment = 1
+
+[node name="TextureButton5" type="TextureButton" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=1021033017]
+layout_mode = 2
+texture_normal = ExtResource("15_mluw0")
+texture_pressed = ExtResource("15_mluw0")
+stretch_mode = 3
+
+[node name="Label11" type="Label" parent="ShopCanvas/Button/PanelContainer/VBoxContainer" unique_id=168244267]
+layout_mode = 2
+text = "10 coins"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
+[connection signal="pressed" from="ShopCanvas/Button/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
