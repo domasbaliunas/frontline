@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bbo2bjt56w3nn" path="res://struct/obj/Sheep.png" id="5_mluw0"]
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://struct/obj/Chicken.png" id="6_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://Coin.png" id="7_g3l8d"]
+[ext_resource type="Texture2D" uid="uid://b1ve6svi420l1" path="res://play-button-round-icon.svg" id="12_mluw0"]
 [ext_resource type="Texture2D" uid="uid://d2t3ja0r5hles" path="res://potatoHP.png" id="13_bp2s2"]
 [ext_resource type="Script" uid="uid://dejcnlkc7crrj" path="res://shop_canvas.gd" id="15_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://tower.png" id="15_mluw0"]
@@ -556,15 +557,17 @@ theme_override_font_sizes/font_size = 28
 text = "waves"
 
 [node name="WaveStartButton" type="Button" parent="CanvasLayer" unique_id=133278478]
-offset_left = 110.0
-offset_top = 602.0
-offset_right = 234.0
-offset_bottom = 634.0
+offset_left = 98.0
+offset_top = 600.0
+offset_right = 158.0
+offset_bottom = 630.0
 theme = SubResource("Theme_mluw0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_7hf5s")
-text = "Wave Start"
+icon = ExtResource("12_mluw0")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
 position = Vector2(1026, 624)
