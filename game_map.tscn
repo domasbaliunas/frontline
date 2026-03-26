@@ -1,14 +1,11 @@
 [gd_scene format=4 uid="uid://bfk8wbdn5lpvn"]
 
 [ext_resource type="Texture2D" uid="uid://drj573u2f24si" path="res://TileSet.png" id="1_qohhg"]
-[ext_resource type="PackedScene" uid="uid://sgia5wphopvw" path="res://Mobs/enemy.tscn" id="2_1va4l"]
 [ext_resource type="Texture2D" uid="uid://djvyecbcsbk05" path="res://struct/obj/mill.png" id="2_jgv0a"]
 [ext_resource type="Script" uid="uid://d2k4gyace51e5" path="res://coins_label.gd" id="3_5fonf"]
-[ext_resource type="PackedScene" uid="uid://bgtlms3cakj63" path="res://Mobs/enemy_strong.tscn" id="3_55amd"]
 [ext_resource type="Texture2D" uid="uid://bqt6783kh4uk4" path="res://struct/obj/Struct1.png" id="3_awp3p"]
 [ext_resource type="Texture2D" uid="uid://6ubqykwn32an" path="res://struct/obj/Struct2.png" id="4_bp2s2"]
 [ext_resource type="Script" uid="uid://0jaywn3aq4x8" path="res://hp.gd" id="4_hrtji"]
-[ext_resource type="PackedScene" uid="uid://dihisa5m8r5xd" path="res://Mobs/enemy_weak.tscn" id="4_qohhg"]
 [ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://player.tscn" id="4_tw6lq"]
 [ext_resource type="Texture2D" uid="uid://bbo2bjt56w3nn" path="res://struct/obj/Sheep.png" id="5_mluw0"]
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://struct/obj/Chicken.png" id="6_7hf5s"]
@@ -485,31 +482,6 @@ texture = ExtResource("5_mluw0")
 [node name="Path2D" type="Path2D" parent="." unique_id=94510516]
 curve = SubResource("Curve2D_gcorv")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1075108810]
-position = Vector2(-3, 67)
-rotation = -0.031239834
-loop = false
-
-[node name="Enemy" parent="Path2D/PathFollow2D" unique_id=1987046420 instance=ExtResource("2_1va4l")]
-position = Vector2(-0.9999999, -3.8146973e-06)
-coin_reward = 5
-
-[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D" unique_id=75332274]
-position = Vector2(-3, 67)
-rotation = -0.031239834
-loop = false
-
-[node name="EnemyStrong" parent="Path2D/PathFollow2D2" unique_id=1674768350 instance=ExtResource("3_55amd")]
-position = Vector2(-0.9999999, -3.8146973e-06)
-coin_reward = 15
-
-[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D" unique_id=2123496330]
-position = Vector2(-3, 67)
-rotation = -0.031239834
-loop = false
-
-[node name="EnemyWeak" parent="Path2D/PathFollow2D3" unique_id=1308309824 instance=ExtResource("4_qohhg")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=470883070]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=657262974]
@@ -551,6 +523,20 @@ script = ExtResource("4_hrtji")
 [node name="PotatoHP" type="TextureRect" parent="CanvasLayer/HBoxContainer2" unique_id=674044265]
 layout_mode = 2
 texture = ExtResource("13_bp2s2")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer" unique_id=1438485882]
+offset_left = 13.0
+offset_top = 596.0
+offset_right = 53.0
+offset_bottom = 636.0
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer/HBoxContainer3" unique_id=754685962]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.49811268, 0.7500591, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 28
+text = "waves"
 
 [node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
 position = Vector2(1026, 624)

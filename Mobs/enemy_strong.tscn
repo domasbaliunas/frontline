@@ -6,6 +6,7 @@
 [node name="EnemyStrong" unique_id=1987046420 instance=ExtResource("1_s8i22")]
 speed = 40.0
 max_health = 400.0
+coin_reward = 15
 
 [node name="Sprite2D" parent="." index="1" unique_id=514499075]
 scale = Vector2(1.2, 1.17)
