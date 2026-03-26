@@ -5,6 +5,7 @@ extends Node2D
 @onready var path: Path2D = $Path2D
 @onready var wave_label: Label = $CanvasLayer/HBoxContainer3/WaveLabel
 @onready var player = $Player
+@onready var wave_button: Button = $CanvasLayer/WaveStartButton
 
 var money_factory_scene = preload("res://money_factory.tscn")
 var placing_money_factory : bool = false
@@ -44,9 +45,11 @@ func _ready() -> void:
 
 	_load_waves_data()
 	if total_waves > 0:
-		current_wave = 1
+		current_wave = 0
 		_update_wave_label()
-		_start_wave_flow()
+		
+	_make_button_green(wave_button)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -296,4 +299,87 @@ func _has_game_over() -> bool:
 func _update_wave_label() -> void:
 	if wave_label:
 		wave_label.text = str(current_wave) + "/" + str(total_waves)
-	
+		
+func _on_wave_start_pressed() -> void:
+	if is_wave_flow_running or is_game_over:
+		return
+
+	current_wave += 1
+	if current_wave > total_waves:
+		return
+
+	_update_wave_label()
+
+	wave_button.disabled = true
+	_make_button_default(wave_button)
+
+	is_wave_flow_running = true
+	await _spawn_wave(current_wave)
+	await _wait_until_wave_is_clear()
+	is_wave_flow_running = false
+	if current_wave < total_waves and not is_game_over:
+		wave_button.disabled = false
+		_make_button_green(wave_button)
+		
+func _make_button_green(button: Button) -> void:
+	var normal_style := StyleBoxFlat.new()
+	normal_style.bg_color = Color(0.138, 0.522, 0.135, 1.0)
+	normal_style.set_corner_radius_all(12)
+	normal_style.set_border_width_all(2)
+	normal_style.border_color = Color(0, 0.4, 0, 1)
+
+	var hover_style := StyleBoxFlat.new()
+	hover_style.bg_color = Color(0.18, 0.62, 0.18, 1.0)
+	hover_style.set_corner_radius_all(12)
+	hover_style.set_border_width_all(2)
+	hover_style.border_color = Color(0, 0.45, 0, 1)
+
+	var pressed_style := StyleBoxFlat.new()
+	pressed_style.bg_color = Color(0.1, 0.45, 0.1, 1.0)
+	pressed_style.set_corner_radius_all(12)
+	pressed_style.set_border_width_all(2)
+	pressed_style.border_color = Color(0, 0.35, 0, 1)
+
+	button.add_theme_stylebox_override("normal", normal_style)
+	button.add_theme_stylebox_override("hover", hover_style)
+	button.add_theme_stylebox_override("pressed", pressed_style)
+
+
+
+func _make_button_default(button: Button) -> void:
+	var corner_radius := 12
+	var border_width := 2
+
+	# NORMAL STATE
+	var normal_style := StyleBoxFlat.new()
+	normal_style.bg_color = Color(0.8, 0.8, 0.8, 1.0)  # light gray
+	normal_style.set_corner_radius_all(corner_radius)
+	normal_style.set_border_width_all(border_width)
+	normal_style.border_color = Color(0.5, 0.5, 0.5, 1)
+
+	# HOVER STATE
+	var hover_style := StyleBoxFlat.new()
+	hover_style.bg_color = Color(0.9, 0.9, 0.9, 1.0)  # slightly lighter gray
+	hover_style.set_corner_radius_all(corner_radius)
+	hover_style.set_border_width_all(border_width)
+	hover_style.border_color = Color(0.6, 0.6, 0.6, 1)
+
+	# PRESSED STATE
+	var pressed_style := StyleBoxFlat.new()
+	pressed_style.bg_color = Color(0.7, 0.7, 0.7, 1.0)  # darker gray
+	pressed_style.set_corner_radius_all(corner_radius)
+	pressed_style.set_border_width_all(border_width)
+	pressed_style.border_color = Color(0.4, 0.4, 0.4, 1)
+
+	# DISABLED STATE
+	var disabled_style := StyleBoxFlat.new()
+	disabled_style.bg_color = Color(0.6, 0.6, 0.6, 1)
+	disabled_style.set_corner_radius_all(corner_radius)
+	disabled_style.set_border_width_all(border_width)
+	disabled_style.border_color = Color(0.3, 0.3, 0.3, 1)
+
+	# Apply to button
+	button.add_theme_stylebox_override("normal", normal_style)
+	button.add_theme_stylebox_override("hover", hover_style)
+	button.add_theme_stylebox_override("pressed", pressed_style)
+	button.add_theme_stylebox_override("disabled", disabled_style)
