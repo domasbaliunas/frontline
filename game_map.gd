@@ -5,6 +5,7 @@ extends Node2D
 @onready var path: Path2D = $Path2D
 @onready var wave_label: Label = $CanvasLayer/HBoxContainer3/WaveLabel
 @onready var player = $Player
+@onready var wave_button: Button = $CanvasLayer/WaveStartButton
 
 var money_factory_scene = preload("res://money_factory.tscn")
 var placing_money_factory : bool = false
@@ -44,9 +45,11 @@ func _ready() -> void:
 
 	_load_waves_data()
 	if total_waves > 0:
-		current_wave = 1
+		current_wave = 0
 		_update_wave_label()
-		_start_wave_flow()
+		
+	_make_button_green(wave_button)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -296,4 +299,38 @@ func _has_game_over() -> bool:
 func _update_wave_label() -> void:
 	if wave_label:
 		wave_label.text = str(current_wave) + "/" + str(total_waves)
+		
+func _on_wave_start_pressed() -> void:
+	if is_wave_flow_running or is_game_over:
+		return
+
+	current_wave += 1
+	if current_wave > total_waves:
+		return
+
+	_update_wave_label()
+
+	wave_button.disabled = true
+	_make_button_default(wave_button)
+
+	is_wave_flow_running = true
+	await _spawn_wave(current_wave)
+	await _wait_until_wave_is_clear()
+	is_wave_flow_running = false
+	if current_wave < total_waves and not is_game_over:
+		wave_button.disabled = false
+		_make_button_green(wave_button)
+		
+func _make_button_green(button: Button) -> void:
+	var green := StyleBoxFlat.new()
+	green.bg_color = Color(0.138, 0.522, 0.135, 1.0) 
 	
+	button.add_theme_stylebox_override("normal", green)
+	button.add_theme_stylebox_override("hover", green)
+	button.add_theme_stylebox_override("pressed", green)
+
+func _make_button_default(button: Button) -> void:
+	button.remove_theme_stylebox_override("normal")
+	button.remove_theme_stylebox_override("hover")
+	button.remove_theme_stylebox_override("pressed")
+	button.remove_theme_stylebox_override("disabled")
