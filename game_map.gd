@@ -6,6 +6,7 @@ extends Node2D
 @onready var wave_label: Label = $CanvasLayer/HBoxContainer3/WaveLabel
 @onready var player = $Player
 @onready var wave_button: Button = $CanvasLayer/WaveStartButton
+@onready var auto_wave_button: Button = $CanvasLayer/AutoWaveStartButton
 
 var money_factory_scene = preload("res://money_factory.tscn")
 var placing_money_factory : bool = false
@@ -49,7 +50,13 @@ func _ready() -> void:
 		_update_wave_label()
 		
 	_make_button_green(wave_button)
+	_make_button_yellow(auto_wave_button, false)
 	
+	# ŠITĄ BLOKĄ ĮSIRAŠYK VIETOJ SAVO SENO:
+	auto_wave_button.toggled.connect(func(is_on): 
+		_make_button_yellow(auto_wave_button, is_on)
+		if is_on and not is_wave_flow_running:
+			_on_wave_start_pressed())
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -318,8 +325,12 @@ func _on_wave_start_pressed() -> void:
 	await _wait_until_wave_is_clear()
 	is_wave_flow_running = false
 	if current_wave < total_waves and not is_game_over:
-		wave_button.disabled = false
-		_make_button_green(wave_button)
+		if auto_wave_button.button_pressed: 
+			await get_tree().create_timer(1.0).timeout 
+			_on_wave_start_pressed()
+		else:
+			wave_button.disabled = false
+			_make_button_green(wave_button)
 		
 func _make_button_green(button: Button) -> void:
 	var normal_style := StyleBoxFlat.new()
@@ -344,7 +355,23 @@ func _make_button_green(button: Button) -> void:
 	button.add_theme_stylebox_override("hover", hover_style)
 	button.add_theme_stylebox_override("pressed", pressed_style)
 
+func _make_button_yellow(button: Button, glow: bool) -> void:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(1, 0.9, 0) # Geltona
+	style.set_corner_radius_all(12)
+	style.set_border_width_all(2)
+	style.border_color = Color(0.5, 0.4, 0)
+	
+	if glow:
+		style.shadow_color = Color(1, 1, 0, 0.5)
+		style.shadow_size = 8 # Glow efektas
+		button.self_modulate = Color(1.5, 1.5, 1) # Papildomas ryškumas
+	else:
+		button.self_modulate = Color(1, 1, 1)
 
+	button.add_theme_stylebox_override("normal", style)
+	button.add_theme_stylebox_override("hover", style)
+	button.add_theme_stylebox_override("pressed", style)
 
 func _make_button_default(button: Button) -> void:
 	var corner_radius := 12
