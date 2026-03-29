@@ -27,21 +27,16 @@ func _ready() -> void:
 		range_shape = (range_shape_node.shape as CircleShape2D).duplicate()
 		range_shape_node.shape = range_shape
 		range_value = range_shape.radius
-
-	add_to_group("towers", true)
-
+	# Don't add to group here - wait until placed
 	attack_timer = Timer.new()
 	attack_timer.wait_time = 1.0 / maxf(attack_speed, 0.001)
 	attack_timer.one_shot = false
 	attack_timer.autostart = true
 	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))
 	add_child(attack_timer)
-	
 	area.input_event.connect(_on_click_area_input)
-
 	update_range_visual()
 	range_visual.visible = false
-
 
 func _process(delta: float) -> void:
 	pass
@@ -56,9 +51,8 @@ func set_range(new_range: float) -> void:
 	update_range_visual()
 
 
-# 🟢 RANGE PIEŠIMAS
 func update_range_visual():
-	if range_visual == null:
+	if not range_visual:
 		return
 	
 	var points = PackedVector2Array()
@@ -72,18 +66,21 @@ func update_range_visual():
 	range_visual.color = Color(0, 0, 0, 0.2)
 
 
-# 🟢 PREVIEW MODE
+
 func set_preview_mode(enabled: bool):
 	is_preview = enabled
-	range_visual.visible = enabled
-	
+	if range_visual:
+		range_visual.visible = enabled
 	if attack_timer:
 		attack_timer.paused = enabled
+	
+	if not enabled and not is_in_group("towers"):
+		add_to_group("towers")
 
 
-# 🟢 NAUJAS: centralizuotas valdymas
 func set_range_visible(visible: bool):
-	range_visual.visible = visible
+	if range_visual:
+		range_visual.visible = visible
 
 
 func _on_attack_timer_timeout():
@@ -132,13 +129,14 @@ func attack(target: Enemy):
 
 func _on_click_area_input(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var build_manager = get_tree().get_first_node_in_group("build_manager")
+		if build_manager and build_manager.current_preview != null:
+			return
+		
 		if not is_preview:
-			# 👇 paslepia VISŲ tower range
 			for tower in get_tree().get_nodes_in_group("towers"):
 				if tower.has_method("set_range_visible"):
 					tower.set_range_visible(false)
-			
-			# 👇 rodo tik šito tower range
 			range_visual.visible = true
 		
 		var menu = get_tree().get_first_node_in_group("tower_menu")

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Currency="*uid://bmoiy127arqrc"
 MeniuMusic="*uid://rmst0aa5yhpm"
 GameMusic="*uid://dcaw1ppk7tfda"
+TowerPlacer="*uid://b3ve4hkikk0gh"
 
 [input]
 

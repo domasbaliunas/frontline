@@ -6,6 +6,10 @@ var price := 0
 @onready var shop_button: Button = $Button
 @onready var panel: PanelContainer = $PanelContainer
 
+var tower_scene = preload("res://Tower.tscn")
+var money_scene = preload("res://money_factory.tscn")
+var sniper_scene = preload("res://SniperTower.tscn")
+
 var is_open := false
 var tween: Tween
 
@@ -72,26 +76,12 @@ func _on_button_pressed():
 
 func _on_tower_b_pressed():
 	if Currency.coins >= 10:
-		selected_tower_type = "Tower"
-		price = 10
-		print("Tower Selected")
-	else:
-		print("Not enough money")
+		TowerPlacer.start_build(tower_scene, 10, "Tower")
 
-
-func _on_money_b_pressed() :
+func _on_money_b_pressed():
 	if Currency.coins >= 100:
-		selected_tower_type = "Money"
-		price = 10
-		print("Money Tower Selected")
-	else:
-		print("Not enough money")
+		TowerPlacer.start_build(money_scene, 100, "Money")
 
-
-func _on_sniper_b_pressed() -> void:
+func _on_sniper_b_pressed():
 	if Currency.coins >= 50:
-		selected_tower_type = "Sniper"
-		price = 10
-		print("Sniper Tower Selected")
-	else:
-		print("Not enough money")
+		TowerPlacer.start_build(sniper_scene, 50, "Sniper")
