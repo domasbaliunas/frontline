@@ -77,3 +77,21 @@ func _on_tower_b_pressed():
 		print("Tower Selected")
 	else:
 		print("Not enough money")
+
+
+func _on_money_b_pressed() :
+	if Currency.coins >= 100:
+		selected_tower_type = "Money"
+		price = 10
+		print("Money Tower Selected")
+	else:
+		print("Not enough money")
+
+
+func _on_sniper_b_pressed() -> void:
+	if Currency.coins >= 50:
+		selected_tower_type = "Sniper"
+		price = 10
+		print("Sniper Tower Selected")
+	else:
+		print("Not enough money")
