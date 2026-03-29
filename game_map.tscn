@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://d2t3ja0r5hles" path="res://potatoHP.png" id="13_bp2s2"]
 [ext_resource type="Script" uid="uid://dejcnlkc7crrj" path="res://shop_canvas.gd" id="15_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://tower.png" id="15_mluw0"]
+[ext_resource type="Texture2D" uid="uid://br81vgq2m0ss4" path="res://tower/Money_factory.png" id="16_4j60y"]
+[ext_resource type="Texture2D" uid="uid://ck23riskbm8wk" path="res://tower/snipertowerpng.png" id="17_3dcwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3l8d"]
 texture = ExtResource("1_qohhg")
@@ -625,10 +627,9 @@ layout_mode = 2
 text = "Tower"
 horizontal_alignment = 1
 
-[node name="TextureButton2" type="TextureButton" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=882053639]
+[node name="Money_B" type="TextureButton" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=882053639]
 layout_mode = 2
-texture_normal = ExtResource("15_mluw0")
-texture_pressed = ExtResource("15_mluw0")
+texture_normal = ExtResource("16_4j60y")
 stretch_mode = 3
 
 [node name="Label7" type="Label" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=920691808]
@@ -641,10 +642,9 @@ layout_mode = 2
 text = "Tower"
 horizontal_alignment = 1
 
-[node name="TextureButton3" type="TextureButton" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1934109175]
+[node name="Sniper_B" type="TextureButton" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1934109175]
 layout_mode = 2
-texture_normal = ExtResource("15_mluw0")
-texture_pressed = ExtResource("15_mluw0")
+texture_normal = ExtResource("17_3dcwv")
 stretch_mode = 3
 
 [node name="Label4" type="Label" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1800764655]
@@ -687,3 +687,5 @@ horizontal_alignment = 1
 [connection signal="pressed" from="CanvasLayer/WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
+[connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Money_B" to="ShopCanvas" method="_on_money_b_pressed"]
+[connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Sniper_B" to="ShopCanvas" method="_on_sniper_b_pressed"]
