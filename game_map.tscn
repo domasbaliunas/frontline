@@ -652,38 +652,6 @@ layout_mode = 2
 text = "50 coins"
 horizontal_alignment = 1
 
-[node name="Label8" type="Label" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1364370948]
-layout_mode = 2
-text = "Tower"
-horizontal_alignment = 1
-
-[node name="TextureButton4" type="TextureButton" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=878569323]
-layout_mode = 2
-texture_normal = ExtResource("15_mluw0")
-texture_pressed = ExtResource("15_mluw0")
-stretch_mode = 3
-
-[node name="Label9" type="Label" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1106219438]
-layout_mode = 2
-text = "10 coins"
-horizontal_alignment = 1
-
-[node name="Label10" type="Label" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1707757525]
-layout_mode = 2
-text = "Tower"
-horizontal_alignment = 1
-
-[node name="TextureButton5" type="TextureButton" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=1021033017]
-layout_mode = 2
-texture_normal = ExtResource("15_mluw0")
-texture_pressed = ExtResource("15_mluw0")
-stretch_mode = 3
-
-[node name="Label11" type="Label" parent="ShopCanvas/PanelContainer/VBoxContainer" unique_id=168244267]
-layout_mode = 2
-text = "10 coins"
-horizontal_alignment = 1
-
 [connection signal="pressed" from="CanvasLayer/WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
