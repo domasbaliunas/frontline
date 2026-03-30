@@ -135,6 +135,7 @@ func attack(target):
 	var is_critical_hit := critical_shot_interval > 0 and shots_fired % critical_shot_interval == 0
 	var final_damage := base_damage
 	
+	
 	if is_critical_hit:
 		final_damage *= critical_damage_multiplier
 
