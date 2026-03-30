@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dxqw07vmukvju"]
 
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://tower.png" id="1_arn3v"]
-[ext_resource type="Script" uid="uid://cyy6b82swpp52" path="res://tower.gd" id="1_bn6qc"]
+[ext_resource type="Script" uid="uid://ch53s7r1bva7v" path="res://tower.gd" id="1_bn6qc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
 radius = 300.0
