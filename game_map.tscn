@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://struct/obj/Chicken.png" id="6_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://Coin.png" id="7_g3l8d"]
 [ext_resource type="Texture2D" uid="uid://b1ve6svi420l1" path="res://play-button-round-icon.svg" id="12_mluw0"]
+[ext_resource type="Texture2D" uid="uid://ukvckiiu0u6o" path="res://download.png" id="13_3dcwv"]
 [ext_resource type="Texture2D" uid="uid://d2t3ja0r5hles" path="res://potatoHP.png" id="13_bp2s2"]
 [ext_resource type="Script" uid="uid://dejcnlkc7crrj" path="res://shop_canvas.gd" id="15_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://tower.png" id="15_mluw0"]
@@ -453,6 +454,19 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4j60y"]
+bg_color = Color(0.7730896, 0.7532349, 0.0788761, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.77254903, 0.7529412, 0.078431375, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="Map" type="Node2D" unique_id=782828480]
 script = ExtResource("1_bp2s2")
 
@@ -523,6 +537,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 script = ExtResource("3_5fonf")
 
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1585440454]
+layout_mode = 2
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer" unique_id=95126937]
 anchors_preset = 1
 anchor_left = 1.0
@@ -568,6 +585,34 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_7hf5s")
 icon = ExtResource("12_mluw0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer" unique_id=68308870]
+offset_left = 13.0
+offset_top = 539.0
+offset_right = 98.0
+offset_bottom = 580.0
+
+[node name="AutoWaveLabel" type="Label" parent="CanvasLayer/HBoxContainer4" unique_id=26172752]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.49811268, 0.7500591, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 28
+text = "Auto"
+
+[node name="AutoWaveStartButton" type="Button" parent="CanvasLayer" unique_id=110643479]
+offset_left = 98.0
+offset_top = 547.0
+offset_right = 158.0
+offset_bottom = 577.0
+theme = SubResource("Theme_mluw0")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_4j60y")
+toggle_mode = true
+icon = ExtResource("13_3dcwv")
 icon_alignment = 1
 expand_icon = true
 
