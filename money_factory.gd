@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://Tower.gd"
 
 @export var money_per_tick: int = 10  # Kiek bulbų duoda
 @export var tick_speed: float = 10   # Kas kiek sekundžių
