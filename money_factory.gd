@@ -13,7 +13,24 @@ func _ready() -> void:
 	$GenerationTimer.start()
 	$GenerationTimer.timeout.connect(_on_timer_timeout)
 
+func _can_generate_money() -> bool:
+	if get_tree().paused:
+		return false
+
+	var game_maps = get_tree().get_nodes_in_group("game_map")
+	if game_maps.is_empty():
+		return false
+
+	var game_map = game_maps[0]
+	if game_map != null and game_map.has_method("is_money_factory_generation_allowed"):
+		return game_map.is_money_factory_generation_allowed()
+
+	return false
+
 func _on_timer_timeout():
+	if not _can_generate_money():
+		return
+
 	if Currency:
 		Currency.add_coins(money_per_tick)
 		print("Pridėta: ", money_per_tick)

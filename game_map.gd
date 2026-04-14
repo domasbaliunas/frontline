@@ -40,6 +40,8 @@ const WAVES_FILE_PATH = "res://waves.json"
 const MAX_WAVES = 20
 #Stops Main meniu music once game starts
 func _ready() -> void:
+	add_to_group("game_map")
+
 	if MeniuMusic:
 		MeniuMusic.stop()
 		GameMusic.play()
@@ -57,6 +59,9 @@ func _ready() -> void:
 		_make_button_yellow(auto_wave_button, is_on)
 		if is_on and not is_wave_flow_running:
 			_on_wave_start_pressed())
+
+func is_money_factory_generation_allowed() -> bool:
+	return is_wave_flow_running and not get_tree().paused and not _has_game_over()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
