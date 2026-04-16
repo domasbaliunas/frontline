@@ -3,7 +3,7 @@ extends CanvasLayer
 var selected_tower = null
 @onready var panel = $Panel
 @onready var label = $Panel/VBoxContainer/Label
-@onready var sell_button = $Panel/VBoxContainer/SellButton
+@onready var sell_button = $Panel/VBoxContainer/Button
 const coef = 0.7
 var just_opened: bool = false
 
