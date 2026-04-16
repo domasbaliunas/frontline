@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqt6783kh4uk4" path="res://assets/images/props/Struct1.png" id="3_awp3p"]
 [ext_resource type="Texture2D" uid="uid://6ubqykwn32an" path="res://assets/images/props/Struct2.png" id="4_bp2s2"]
 [ext_resource type="Script" uid="uid://0jaywn3aq4x8" path="res://scripts/ui/hp.gd" id="4_hrtji"]
-[ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://scenes/player/player.tscn" id="4_tw6lq"]
+[ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://scenes/core/player.tscn" id="4_tw6lq"]
 [ext_resource type="Texture2D" uid="uid://bbo2bjt56w3nn" path="res://assets/images/props/Sheep.png" id="5_mluw0"]
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://assets/images/props/Chicken.png" id="6_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://assets/images/ui/Coin.png" id="7_g3l8d"]    
