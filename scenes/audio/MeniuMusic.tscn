@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://rmst0aa5yhpm"]
+
+[ext_resource type="AudioStream" uid="uid://bsce3n8fkrtsh" path="res://assets/audio/music/Medieval England - Anon. 1225_ Miri it is while sumer ilast.mp3" id="1_g84o6"]
+[ext_resource type="Script" uid="uid://7bt04x1ra43c" path="res://scripts/core/MusicController.gd" id="2_56u4x"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=615990056]
+stream = ExtResource("1_g84o6")
+autoplay = true
+parameters/looping = true
+script = ExtResource("2_56u4x")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dcaw1ppk7tfda"]
+
+[ext_resource type="AudioStream" uid="uid://bn83i813fse5m" path="res://assets/audio/music/Medieval Music Vox Vulgaris - Rokatanc.mp3" id="1_ugfso"]
+[ext_resource type="Script" uid="uid://7bt04x1ra43c" path="res://scripts/core/MusicController.gd" id="2_36b2d"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1306423575]
+stream = ExtResource("1_ugfso")
+parameters/looping = true
+script = ExtResource("2_36b2d")

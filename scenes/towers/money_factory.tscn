@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cfc77cfkptkdi"]
+
+[ext_resource type="Script" uid="uid://cg4esnxxjjubu" path="res://scripts/towers/money_factory.gd" id="1_4tu55"]
+[ext_resource type="Texture2D" uid="uid://br81vgq2m0ss4" path="res://assets/images/towers/Money_factory.png" id="2_g3bjb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tu55"]
+radius = 24.0
+
+[node name="Money_factory" type="Node2D" unique_id=1059210598]
+script = ExtResource("1_4tu55")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=634379796]
+texture = ExtResource("2_g3bjb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=768835253]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=218667149]
+shape = SubResource("CircleShape2D_4tu55")
+debug_color = Color(0.89529026, 0.2776419, 0.41362226, 0.41960785)
+
+[node name="GenerationTimer" type="Timer" parent="." unique_id=847955165]

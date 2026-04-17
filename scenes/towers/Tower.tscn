@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dxqw07vmukvju"]
+
+[ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://assets/images/towers/tower.png" id="1_arn3v"]     
+[ext_resource type="Script" uid="uid://ch53s7r1bva7v" path="res://scripts/towers/tower.gd" id="1_bn6qc"]        
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usulm"]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bn6qc"]
+size = Vector2(36, 37)
+
+[node name="Tower" type="Node2D" unique_id=805125601]
+script = ExtResource("1_bn6qc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1925869869]
+texture = ExtResource("1_arn3v")
+
+[node name="Tower" type="Area2D" parent="." unique_id=1168020171]
+position = Vector2(0, -17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower" unique_id=1838168117]
+position = Vector2(0, 17)
+shape = SubResource("CircleShape2D_usulm")
+
+[node name="Node" type="Node" parent="." unique_id=1022510012]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=940606102]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=927817570]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bn6qc")
+
+[node name="RangeCircle" type="Polygon2D" parent="." unique_id=1564258127]
+color = Color(0, 0, 0, 0.007843138)
