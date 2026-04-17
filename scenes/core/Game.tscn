@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://pkrsdb2gs7yj"]
 
-[ext_resource type="Texture2D" uid="uid://bdbbjd4cfvlj" path="res://assets/images/ui/settings (2).png" id="1_wbfu4"] 
 [ext_resource type="Script" uid="uid://l5wudpbitajw" path="res://scripts/core/game.gd" id="1_xkndl"]
 [ext_resource type="PackedScene" uid="uid://cjyj4itibef8c" path="res://scenes/ui/TowerMenu.tscn" id="2_3mrqo"]
 [ext_resource type="PackedScene" uid="uid://djjycrn0muqdt" path="res://scenes/ui/pause_menu.tscn" id="3_u44n3"]
-[ext_resource type="PackedScene" uid="uid://bfk8wbdn5lpvn" path="res://scenes/core/game_map.tscn" id="4_sb48q"] 
+[ext_resource type="PackedScene" uid="uid://bfk8wbdn5lpvn" path="res://scenes/core/game_map.tscn" id="4_sb48q"]
+[ext_resource type="Texture2D" uid="uid://cxn18ae2ipxm5" path="res://assets/images/ui/settings.png" id="5_xgk1x"]
 
 [node name="Game" type="Node2D" unique_id=225877384]
 script = ExtResource("1_xkndl")
@@ -29,10 +29,12 @@ texture_filter = 4
 
 [node name="PauseMenuButton" type="TextureButton" parent="Map/PauseMenuGroup" unique_id=1890123618]
 layout_mode = 0
-offset_left = 1109.0
-offset_top = 9.0
-offset_right = 1144.0
-offset_bottom = 42.0
-texture_normal = ExtResource("1_wbfu4")
+offset_left = 1104.0
+offset_top = 5.0
+offset_right = 1146.0
+offset_bottom = 47.0
+texture_normal = ExtResource("5_xgk1x")
+ignore_texture_size = true
+stretch_mode = 0
 
 [connection signal="pressed" from="Map/PauseMenuGroup/PauseMenuButton" to="." method="_on_texture_button_pressed"]
