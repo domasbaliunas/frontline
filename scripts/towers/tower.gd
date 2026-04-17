@@ -7,6 +7,7 @@ extends Node2D
 @onready var area = $Area2D
 
 @export var attack_speed: float = 0.75
+@export var tower_type: String = "normal"
 
 @export_group("Damage")
 @export var base_damage: float = 25.0
@@ -100,7 +101,6 @@ func set_preview_mode(enabled: bool):
 func set_range_visible(visible: bool):
 	if range_visual:
 		range_visual.visible = visible
-		# Jei tai nėra preview, užtikriname, kad spalva būtų juoda
 		if not is_preview:
 			range_visual.color = Color(0, 0, 0, 0.2)
 
@@ -142,6 +142,7 @@ func attack(target):
 	proj.target = target
 	proj.damage = final_damage
 	proj.is_critical_hit = is_critical_hit
+	proj.tower_type = tower_type
 	
 	get_tree().current_scene.add_child(proj)
 
