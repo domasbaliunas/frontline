@@ -3,10 +3,10 @@ extends Node2D
 @onready var tilemap = $TileMapLayer
 @onready var shop = $ShopCanvas
 @onready var path: Path2D = $Path2D
-@onready var wave_label: Label = $CanvasLayer/HBoxContainer3/WaveLabel
+@onready var wave_label: Label = $HBoxContainer3/WaveLabel
 @onready var player = $Player
-@onready var wave_button: Button = $CanvasLayer/WaveStartButton
-@onready var auto_wave_button: Button = $CanvasLayer/AutoWaveStartButton
+@onready var wave_button: Button = $WaveStartButton
+@onready var auto_wave_button: Button = $AutoWaveStartButton
 
 var money_factory_scene = preload("res://scenes/towers/money_factory.tscn")
 var placing_money_factory : bool = false

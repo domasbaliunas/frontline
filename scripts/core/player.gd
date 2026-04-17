@@ -2,7 +2,7 @@ extends Area2D
 
 
 @export var hp := 10
-@onready var hp_label = $"../CanvasLayer/HBoxContainer2/HP"
+@onready var hp_label = $"../HBoxContainer2/HP"
 
 func _ready():
 	body_entered.connect(_on_body_entered)
