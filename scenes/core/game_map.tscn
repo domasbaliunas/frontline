@@ -1,21 +1,21 @@
 [gd_scene format=4 uid="uid://bfk8wbdn5lpvn"]
 
-[ext_resource type="Script" uid="uid://b4y3wtdqc7v6i" path="res://scripts/core/game_map.gd" id="1_bp2s2"]    
-[ext_resource type="Texture2D" uid="uid://drj573u2f24si" path="res://assets/images/tiles/TileSet.png" id="1_qohhg"] 
-[ext_resource type="Texture2D" uid="uid://djvyecbcsbk05" path="res://assets/images/props/mill.png" id="2_jgv0a"]
-[ext_resource type="Script" uid="uid://d2k4gyace51e5" path="res://scripts/ui/coins_label.gd" id="3_5fonf"] 
+[ext_resource type="Script" uid="uid://b4y3wtdqc7v6i" path="res://scripts/core/game_map.gd" id="1_bp2s2"]
+[ext_resource type="Texture2D" uid="uid://drj573u2f24si" path="res://assets/images/tiles/TileSet.png" id="1_qohhg"]
+[ext_resource type="Script" uid="uid://d2k4gyace51e5" path="res://scripts/ui/coins_label.gd" id="3_5fonf"]
+[ext_resource type="Texture2D" uid="uid://d2xo4a8uisrcw" path="res://assets/images/props/MillAnimation.png" id="3_6qxoo"]
 [ext_resource type="Texture2D" uid="uid://bqt6783kh4uk4" path="res://assets/images/props/Struct1.png" id="3_awp3p"]
-[ext_resource type="Texture2D" uid="uid://6ubqykwn32an" path="res://assets/images/props/Struct2.png" id="4_bp2s2"]
 [ext_resource type="Script" uid="uid://0jaywn3aq4x8" path="res://scripts/ui/hp.gd" id="4_hrtji"]
 [ext_resource type="PackedScene" uid="uid://cxd3xmivu3ud3" path="res://scenes/core/player.tscn" id="4_tw6lq"]
-[ext_resource type="Texture2D" uid="uid://bbo2bjt56w3nn" path="res://assets/images/props/Sheep.png" id="5_mluw0"]
+[ext_resource type="Texture2D" uid="uid://ma485g4hfhh8" path="res://assets/images/props/ChickenAnimation.png" id="5_n8lm6"]
+[ext_resource type="Texture2D" uid="uid://dumviirlvvqp5" path="res://assets/images/props/SheepAnimation.png" id="6_6qxoo"]
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://assets/images/props/Chicken.png" id="6_7hf5s"]
-[ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://assets/images/ui/Coin.png" id="7_g3l8d"]    
+[ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://assets/images/ui/Coin.png" id="7_g3l8d"]
 [ext_resource type="Texture2D" uid="uid://b1ve6svi420l1" path="res://assets/images/ui/play-button-round-icon.svg" id="12_mluw0"]
 [ext_resource type="Texture2D" uid="uid://ukvckiiu0u6o" path="res://assets/images/ui/download.png" id="13_3dcwv"]
 [ext_resource type="Texture2D" uid="uid://d2t3ja0r5hles" path="res://assets/images/ui/potatoHP.png" id="13_bp2s2"]
 [ext_resource type="Script" uid="uid://dejcnlkc7crrj" path="res://scripts/ui/shop_canvas.gd" id="15_7hf5s"]
-[ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://assets/images/towers/tower.png" id="15_mluw0"]  
+[ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://assets/images/towers/tower.png" id="15_mluw0"]
 [ext_resource type="Texture2D" uid="uid://br81vgq2m0ss4" path="res://assets/images/towers/Money_factory.png" id="16_4j60y"]
 [ext_resource type="Texture2D" uid="uid://ck23riskbm8wk" path="res://assets/images/towers/snipertowerpng.png" id="17_3dcwv"]
 
@@ -433,6 +433,164 @@ terrain_set_0/terrain_2/name = "Laukas 2"
 terrain_set_0/terrain_2/color = Color(0.22779322, 0.44639653, 0.9016023, 1)
 sources/1 = SubResource("TileSetAtlasSource_g3l8d")
 
+[sub_resource type="Animation" id="Animation_i08f8"]
+resource_name = "Mill"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4333334, 0.8333333, 1.1000001, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_yna2q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lj1gy"]
+_data = {
+&"Mill": SubResource("Animation_i08f8"),
+&"RESET": SubResource("Animation_yna2q")
+}
+
+[sub_resource type="Animation" id="Animation_j2tyq"]
+resource_name = "ChickenHut"
+length = 4.9666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.33333334, 1, 2, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 6]
+}
+
+[sub_resource type="Animation" id="Animation_8anjt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ufmj"]
+_data = {
+&"ChickenHut": SubResource("Animation_j2tyq"),
+&"RESET": SubResource("Animation_8anjt")
+}
+
+[sub_resource type="Animation" id="Animation_n8lm6"]
+resource_name = "sheep"
+length = 5.6666665
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.4, 2.4666667, 2.9999995, 3.4999995, 4.4999995),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 5, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i08f8"]
+_data = {
+&"sheep": SubResource("Animation_n8lm6")
+}
+
+[sub_resource type="Animation" id="Animation_lj1gy"]
+resource_name = "Sheep"
+length = 7.1666665
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.8, 3.8666666, 4.3999996, 4.8999996, 5.8999996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 5, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2tyq"]
+_data = {
+&"Sheep": SubResource("Animation_lj1gy")
+}
+
+[sub_resource type="Animation" id="Animation_0ufmj"]
+resource_name = "Avis"
+length = 5.633333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 1.4666667, 2, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 5, 1]
+}
+
+[sub_resource type="Animation" id="Animation_itun0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g1rxl"]
+_data = {
+&"Avis": SubResource("Animation_0ufmj"),
+&"RESET": SubResource("Animation_itun0")
+}
+
 [sub_resource type="Curve2D" id="Curve2D_gcorv"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -3, 67, 0, 0, 0, 0, 29, 66, 0, 0, 0, 0, 28, 48, 0, 0, 0, 0, 109, 52, 0, 0, 0, 0, 113, 69, 0, 0, 0, 0, 128, 73, 0, 0, 0, 0, 133, 111, 0, 0, 0, 0, 150, 111, 0, 0, 0, 0, 153, 472, 0, 0, 0, 0, 170, 474, 0, 0, 0, 0, 169, 508, 0, 0, 0, 0, 207, 512, 0, 0, 0, 0, 209, 527, 0, 0, 0, 0, 325, 527, 0, 0, 0, 0, 330, 513, 0, 0, 0, 0, 343, 509, 0, 0, 0, 0, 355, 493, 0, 0, 0, 0, 365, 482, 0, 0, 0, 0, 374, 471, 0, 0, 0, 0, 388, 462, 0, 0, 0, 0, 393, 430, 0, 0, 0, 0, 406, 424, 0, 0, 0, 0, 408, 347, 0, 0, 0, 0, 391, 345, 0, 0, 0, 0, 383, 306, 0, 0, 0, 0, 374, 303, 0, 0, 0, 0, 362, 271, 0, 0, 0, 0, 353, 262, 0, 0, 0, 0, 352, 133, 0, 0, 0, 0, 370, 116, 0, 0, 0, 0, 379, 91, 0, 0, 0, 0, 418, 53, 0, 0, 0, 0, 470, 51, 0, 0, 0, 0, 472, 33, 0, 0, 0, 0, 567, 30, 0, 0, 0, 0, 572, 52, 0, 0, 0, 0, 626, 52, 0, 0, 0, 0, 628, 60, 0, 0, 0, 0, 635, 70, 0, 0, 0, 0, 654, 70, 0, 0, 0, 0, 673, 75, 0, 0, 0, 0, 673, 87, 0, 0, 0, 0, 684, 93, 0, 0, 0, 0, 691, 107, 0, 0, 0, 0, 705, 110, 0, 0, 0, 0, 713, 158, 0, 0, 0, 0, 710, 329, 0, 0, 0, 0, 691, 332, 0, 0, 0, 0, 688, 350, 0, 0, 0, 0, 649, 353, 0, 0, 0, 0, 645, 368, 0, 0, 0, 0, 634, 372, 0, 0, 0, 0, 627, 407, 0, 0, 0, 0, 611, 416, 0, 0, 0, 0, 609, 427, 0, 0, 0, 0, 592, 438, 0, 0, 0, 0, 593, 533, 0, 0, 0, 0, 609, 537, 0, 0, 0, 0, 616, 550, 0, 0, 0, 0, 636, 558, 0, 0, 0, 0, 640, 567, 0, 0, 0, 0, 669, 575, 0, 0, 0, 0, 678, 586, 0, 0, 0, 0, 700, 587, 0, 0, 0, 0, 716, 569, 0, 0, 0, 0, 757, 566, 0, 0, 0, 0, 766, 567, 0, 0, 0, 0, 776, 548, 0, 0, 0, 0, 791, 544, 0, 0, 0, 0, 795, 526, 0, 0, 0, 0, 811, 519, 0, 0, 0, 0, 821, 506, 0, 0, 0, 0, 833, 486, 0, 0, 0, 0, 836, 466, 0, 0, 0, 0, 848, 457, 0, 0, 0, 0, 853, 416, 0, 0, 0, 0, 866, 400, 0, 0, 0, 0, 868, 110, 0, 0, 0, 0, 891, 109, 0, 0, 0, 0, 891, 71, 0, 0, 0, 0, 910, 70, 0, 0, 0, 0, 929, 68, 0, 0, 0, 0, 934, 53, 0, 0, 0, 0, 969, 51, 0, 0, 0, 0, 1013, 51, 0, 0, 0, 0, 1030, 55, 0, 0, 0, 0, 1035, 68, 0, 0, 0, 0, 1047, 78, 0, 0, 0, 0, 1068, 99, 0, 0, 0, 0, 1069, 311, 0, 0, 0, 0, 1048, 308, 0, 0, 0, 0, 1051, 346, 0, 0, 0, 0, 1029, 352, 0, 0, 0, 0, 1027, 391, 0, 0, 0, 0, 1010, 392, 0, 0, 0, 0, 1010, 627, 0, 0, 0, 0, 1030, 634, 0, 0, 0, 0, 1031, 653)
@@ -476,7 +634,14 @@ tile_set = SubResource("TileSet_feb5d")
 
 [node name="mill" type="Sprite2D" parent="TileMapLayer" unique_id=297958212]
 position = Vector2(987, 118)
-texture = ExtResource("2_jgv0a")
+texture = ExtResource("3_6qxoo")
+hframes = 2
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/mill" unique_id=2146028781]
+libraries/ = SubResource("AnimationLibrary_lj1gy")
+autoplay = &"Mill"
+speed_scale = 3.174
 
 [node name="strcut1" type="Sprite2D" parent="TileMapLayer" unique_id=21397209]
 position = Vector2(40, 499.00003)
@@ -485,33 +650,62 @@ texture = ExtResource("3_awp3p")
 flip_h = true
 
 [node name="struct2" type="Sprite2D" parent="TileMapLayer" unique_id=1456750921]
-position = Vector2(200, 19)
-scale = Vector2(0.37499997, 0.34583333)
-texture = ExtResource("4_bp2s2")
+position = Vector2(199.25, 22.959116)
+scale = Vector2(0.20208335, 0.18223332)
+texture = ExtResource("5_n8lm6")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/struct2" unique_id=2120252131]
+libraries/ = SubResource("AnimationLibrary_0ufmj")
+autoplay = &"ChickenHut"
 
 [node name="sheep1" type="Sprite2D" parent="TileMapLayer" unique_id=1980260423]
-position = Vector2(136, 525)
-texture = ExtResource("5_mluw0")
+position = Vector2(119, 513)
+scale = Vector2(0.20416668, 0.19166659)
+texture = ExtResource("6_6qxoo")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/sheep1" unique_id=620232594]
+libraries/ = SubResource("AnimationLibrary_i08f8")
+autoplay = &"sheep"
 
 [node name="sheep2" type="Sprite2D" parent="TileMapLayer" unique_id=1472694386]
-position = Vector2(97, 505)
-texture = ExtResource("5_mluw0")
+position = Vector2(95.25001, 506)
+scale = Vector2(0.19583333, 0.20000036)
+texture = ExtResource("6_6qxoo")
 flip_h = true
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/sheep2" unique_id=1729455419]
+libraries/ = SubResource("AnimationLibrary_j2tyq")
+autoplay = &"Sheep"
 
 [node name="chicken1" type="Sprite2D" parent="TileMapLayer" unique_id=180138623]
-position = Vector2(221, 35)
+position = Vector2(225, 41)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_7hf5s")
 flip_h = true
 
 [node name="chicken2" type="Sprite2D" parent="TileMapLayer" unique_id=1064598362]
-position = Vector2(205, 40)
+position = Vector2(211, 48)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_7hf5s")
 
 [node name="sheep3" type="Sprite2D" parent="TileMapLayer" unique_id=869783835]
-position = Vector2(205, 477)
-texture = ExtResource("5_mluw0")
+position = Vector2(125, 488.00003)
+scale = Vector2(0.18750001, 0.19166687)
+texture = ExtResource("6_6qxoo")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/sheep3" unique_id=1561714535]
+libraries/ = SubResource("AnimationLibrary_g1rxl")
+autoplay = &"Avis"
 
 [node name="Path2D" type="Path2D" parent="." unique_id=94510516]
 curve = SubResource("Curve2D_gcorv")
@@ -616,9 +810,12 @@ expand_icon = true
 position = Vector2(1026, 624)
 
 [node name="ShopCanvas" type="Control" parent="." unique_id=1764928307]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("15_7hf5s")
 
 [node name="Button" type="Button" parent="ShopCanvas" unique_id=1689166284]
+layout_mode = 0
 offset_left = 1135.0
 offset_top = 240.0
 offset_right = 1160.0
@@ -628,6 +825,7 @@ action_mode = 0
 text = "<"
 
 [node name="PanelContainer" type="PanelContainer" parent="ShopCanvas" unique_id=439462701]
+layout_mode = 0
 offset_left = 1160.0
 offset_top = 94.0
 offset_right = 1240.0
@@ -693,7 +891,6 @@ layout_mode = 2
 text = "50 coins"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Money_B" to="ShopCanvas" method="_on_money_b_pressed"]
