@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var selected_tower_type := ""
 var price := 0

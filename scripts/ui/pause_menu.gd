@@ -29,5 +29,10 @@ func _on_restartbutton_pressed() -> void:
 	get_tree().reload_current_scene()
 	Currency.coins = 0
 
-func _on_quitbutton_pressed() -> void:
-	get_tree().quit()
+func _on_mainmenubutton_pressed() -> void:
+	resume()
+	if GameMusic:
+		GameMusic.stop()
+	if MeniuMusic:
+		MeniuMusic.play()
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")

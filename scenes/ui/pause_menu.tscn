@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djjycrn0muqdt"]
 
-[ext_resource type="Script" uid="uid://fajuf10ojmlk" path="res://scripts/ui/pause_menu.gd" id="1_nwcfo"]   
+[ext_resource type="Script" uid="uid://fajuf10ojmlk" path="res://scripts/ui/pause_menu.gd" id="1_nwcfo"]
 [ext_resource type="Shader" uid="uid://c12bttjck6sao" path="res://assets/shaders/new_shader.gdshader" id="2_05uyy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p81d2"]
@@ -11,6 +11,8 @@ shader_parameter/lad = 0.0
 
 [sub_resource type="Theme" id="Theme_d3xb4"]
 default_font = SubResource("FontVariation_2nc7s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lmf7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxa3g"]
 bg_color = Color(1, 1, 1, 1)
@@ -101,7 +103,7 @@ offset_right = 3.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 script = ExtResource("1_nwcfo")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1237151003]
@@ -111,7 +113,7 @@ offset_left = -3.0
 offset_top = -4.0
 offset_right = 1152.0
 offset_bottom = 648.0
-mouse_filter = 2
+mouse_filter = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1808252888]
 modulate = Color(1, 1, 1, 0)
@@ -123,10 +125,12 @@ offset_right = 681.0
 offset_bottom = 325.0
 mouse_filter = 2
 theme = SubResource("Theme_d3xb4")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0lmf7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=220389399]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 8
 
 [node name="resumebutton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1489556145]
 layout_mode = 2
@@ -154,7 +158,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q2yj1")
 text = "Restart"
 
-[node name="quitbutton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1993349258]
+[node name="mainmenubutton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1993349258]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
@@ -165,7 +169,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_mxa3g")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mxa3g")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e8sti")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q2yj1")
-text = "Quit"
+text = "Main menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=240944190]
 process_mode = 3
@@ -173,4 +177,4 @@ libraries/ = SubResource("AnimationLibrary_lv42l")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/resumebutton" to="." method="_on_resumebutton_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/restartbutton" to="." method="_on_restartbutton_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/quitbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/mainmenubutton" to="." method="_on_mainmenubutton_pressed"]

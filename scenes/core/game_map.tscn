@@ -518,38 +518,34 @@ curve = SubResource("Curve2D_gcorv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=470883070]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=657262974]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=657262974]
 offset_left = 5.0
 offset_top = 2.0
 offset_right = 96.0
 offset_bottom = 42.0
 theme_override_constants/separation = 4
 
-[node name="Coin" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=973354165]
+[node name="Coin" type="TextureRect" parent="HBoxContainer" unique_id=973354165]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("7_g3l8d")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="CoinsLabel" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=2099452816]
+[node name="CoinsLabel" type="Label" parent="HBoxContainer" unique_id=2099452816]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 script = ExtResource("3_5fonf")
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1585440454]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1585440454]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer" unique_id=95126937]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -133.0
-offset_right = -54.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=95126937]
+offset_left = 1019.0
+offset_right = 1098.0
 offset_bottom = 53.0
-grow_horizontal = 0
 
-[node name="HP" type="Label" parent="CanvasLayer/HBoxContainer2" unique_id=1784496523]
+[node name="HP" type="Label" parent="HBoxContainer2" unique_id=1784496523]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.99607843, 0, 0.07450981, 1)
 theme_override_font_sizes/font_size = 38
@@ -557,17 +553,17 @@ text = "10"
 horizontal_alignment = 1
 script = ExtResource("4_hrtji")
 
-[node name="PotatoHP" type="TextureRect" parent="CanvasLayer/HBoxContainer2" unique_id=674044265]
+[node name="PotatoHP" type="TextureRect" parent="HBoxContainer2" unique_id=674044265]
 layout_mode = 2
 texture = ExtResource("13_bp2s2")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer" unique_id=1438485882]
+[node name="HBoxContainer3" type="HBoxContainer" parent="." unique_id=1438485882]
 offset_left = 13.0
 offset_top = 596.0
 offset_right = 53.0
 offset_bottom = 636.0
 
-[node name="WaveLabel" type="Label" parent="CanvasLayer/HBoxContainer3" unique_id=754685962]
+[node name="WaveLabel" type="Label" parent="HBoxContainer3" unique_id=754685962]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.49811268, 0.7500591, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -575,7 +571,7 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 28
 text = "waves"
 
-[node name="WaveStartButton" type="Button" parent="CanvasLayer" unique_id=133278478]
+[node name="WaveStartButton" type="Button" parent="." unique_id=133278478]
 offset_left = 98.0
 offset_top = 600.0
 offset_right = 158.0
@@ -588,13 +584,13 @@ icon = ExtResource("12_mluw0")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer" unique_id=68308870]
+[node name="HBoxContainer4" type="HBoxContainer" parent="." unique_id=68308870]
 offset_left = 13.0
 offset_top = 539.0
 offset_right = 98.0
 offset_bottom = 580.0
 
-[node name="AutoWaveLabel" type="Label" parent="CanvasLayer/HBoxContainer4" unique_id=26172752]
+[node name="AutoWaveLabel" type="Label" parent="HBoxContainer4" unique_id=26172752]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.49811268, 0.7500591, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -602,7 +598,7 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 28
 text = "Auto"
 
-[node name="AutoWaveStartButton" type="Button" parent="CanvasLayer" unique_id=110643479]
+[node name="AutoWaveStartButton" type="Button" parent="." unique_id=110643479]
 offset_left = 98.0
 offset_top = 547.0
 offset_right = 158.0
@@ -619,7 +615,7 @@ expand_icon = true
 [node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
 position = Vector2(1026, 624)
 
-[node name="ShopCanvas" type="CanvasLayer" parent="." unique_id=1764928307]
+[node name="ShopCanvas" type="Control" parent="." unique_id=1764928307]
 script = ExtResource("15_7hf5s")
 
 [node name="Button" type="Button" parent="ShopCanvas" unique_id=1689166284]
