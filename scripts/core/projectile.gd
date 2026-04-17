@@ -4,9 +4,10 @@ var speed: float = 1000.0
 var target: Enemy = null
 var damage: float = 25.0
 var is_critical_hit: bool = false
+var tower_type: String = "normal"
 
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target) \
@@ -18,9 +19,8 @@ func _process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 	if global_position.distance_to(target.global_position) < 10:
-		target.take_damage(_determine_damage(target), is_critical_hit)
+		target.take_damage(_determine_damage(target), is_critical_hit, tower_type)
 		queue_free()
 		
-# To be able to change damage based on enemy type
 func _determine_damage(_target: Enemy) -> float:
 	return maxf(damage, 0.0)

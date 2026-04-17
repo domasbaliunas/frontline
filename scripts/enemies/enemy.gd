@@ -7,6 +7,11 @@ const DAMAGE_POPUP_SCRIPT = preload("res://scripts/ui/damage_popup.gd")
 @export var max_health: float = 100
 @export var coin_reward: int = 10
 
+@export var resistances: Dictionary = {
+	"normal": 0.0,
+	"sniper": 0.0
+}
+
 @export_group("Damage Popup")
 @export var damage_popup_offset: Vector2 = Vector2(0, -20)
 @export var damage_popup_random_offset: Vector2 = Vector2(8, 4)
@@ -20,9 +25,6 @@ const DAMAGE_POPUP_SCRIPT = preload("res://scripts/ui/damage_popup.gd")
 
 var health: float
 var path_follow: PathFollow2D
-
-# Max and min scale decides the scaling amount when damage is taken
-# To damage mobs use take_damage()
 
 func _ready() -> void:
 	health = max_health
@@ -46,13 +48,19 @@ func update_sprite_scale():
 	var current_scale = min_scale + (health_ratio * (max_scale - min_scale))
 	scale = Vector2(current_scale, current_scale)
 
-func take_damage(amount: float, is_critical_hit: bool = false) -> void:
+func take_damage(amount: float, is_critical_hit: bool = false, tower_type: String = "normal") -> void:
 	if health <= 0 or amount <= 0:
 		return
 
-	health -= amount
+	var resistance := 0.0
+	if resistances.has(tower_type):
+		resistance = resistances[tower_type]
+
+	var final_damage := amount * (1.0 - resistance)
+
+	health -= final_damage
 	var is_killing_blow := health <= 0
-	_spawn_damage_popup(amount, is_killing_blow, is_critical_hit)
+	_spawn_damage_popup(final_damage, is_killing_blow, is_critical_hit)
 	print("Mob health:", health)
 
 	if is_killing_blow:
@@ -83,7 +91,6 @@ func die() -> void:
 	Currency.add_coins(coin_reward)
 	queue_free()
 	
-	# Test senario (Press space to damage)
 func _input(event):
 	if event.is_action_pressed("ui_accept"):  
 		take_damage(25)
