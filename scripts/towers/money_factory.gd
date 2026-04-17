@@ -5,7 +5,7 @@ extends "res://scripts/towers/tower.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	super()
 	var timer = $GenerationTimer
 	
 	$GenerationTimer.wait_time = tick_speed
