@@ -415,3 +415,37 @@ func _make_button_default(button: Button) -> void:
 	button.add_theme_stylebox_override("hover", hover_style)
 	button.add_theme_stylebox_override("pressed", pressed_style)
 	button.add_theme_stylebox_override("disabled", disabled_style)
+
+
+func _on_speed_button_pressed() -> void:
+	var btn = $SpeedButton
+	
+	if Engine.time_scale == 1.0:
+		Engine.time_scale = 2.0
+		btn.text = "2X"
+		_update_speed_button_style(btn, true) 
+	else:
+		Engine.time_scale = 1.0
+		btn.text = "1X"
+		_update_speed_button_style(btn, false)
+
+func _update_speed_button_style(button: Button, active: bool) -> void:
+	var style := StyleBoxFlat.new()
+	style.set_corner_radius_all(12)
+	style.set_border_width_all(2)
+	
+	if active:
+		style.bg_color = Color("#a0a0a0")
+		style.border_color = Color("#ffffff")
+		style.shadow_color = Color(1, 1, 1, 0.4)
+		style.shadow_size = 8
+		button.self_modulate = Color(1.2, 1.2, 1.2) # Lengvas HDR glow
+	else:
+		style.bg_color = Color("#333333")
+		style.border_color = Color("#222222")
+		style.shadow_size = 0
+		button.self_modulate = Color(1, 1, 1)
+		
+	button.add_theme_stylebox_override("normal", style)
+	button.add_theme_stylebox_override("hover", style)
+	button.add_theme_stylebox_override("pressed", style)
