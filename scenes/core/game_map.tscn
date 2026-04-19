@@ -625,6 +625,14 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qxoo"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [node name="Map" type="Node2D" unique_id=782828480]
 script = ExtResource("1_bp2s2")
 
@@ -891,7 +899,17 @@ layout_mode = 2
 text = "50 coins"
 horizontal_alignment = 1
 
+[node name="SpeedButton" type="Button" parent="." unique_id=259301790]
+offset_left = 191.0
+offset_top = 600.0
+offset_right = 261.0
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6qxoo")
+toggle_mode = true
+text = "1X"
+
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Money_B" to="ShopCanvas" method="_on_money_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Sniper_B" to="ShopCanvas" method="_on_sniper_b_pressed"]
+[connection signal="pressed" from="SpeedButton" to="." method="_on_speed_button_pressed"]
