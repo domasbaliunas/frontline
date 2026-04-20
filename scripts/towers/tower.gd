@@ -20,7 +20,17 @@ var attack_timer: Timer
 var range_value: float
 var range_shape: CircleShape2D
 var shots_fired: int = 0
-@export var cost: int = 100  
+@export var cost: int = 0  
+var sell_value: int:
+	get:
+		return int(cost * 0.7)
+
+func sell_tower():
+	if Currency:
+		Currency.add_coins(sell_value)
+		print("Bokštas parduotas už: ", sell_value)
+		queue_free() 
+
 
 var is_preview: bool = false
 var is_placement_valid: bool = true
