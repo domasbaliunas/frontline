@@ -21,7 +21,8 @@ var tower_id: int = 1
 var enemy_scenes := {
 	"standard": preload("res://scenes/enemies/enemy.tscn"),
 	"weak": preload("res://scenes/enemies/enemy_weak.tscn"),
-	"strong": preload("res://scenes/enemies/enemy_strong.tscn")
+	"strong": preload("res://scenes/enemies/enemy_strong.tscn"),
+	"boss" : preload("res://scenes/enemies/boss.tscn")
 }
 
 var waves_data: Array = []
@@ -37,7 +38,7 @@ var _tower_dummy = tower_scene.instantiate()
 # TileMapLayer terrain ID for path tiles
 const PATH_TILE_ID = 0
 const WAVES_FILE_PATH = "res://assets/data/waves.json"
-const MAX_WAVES = 20
+const MAX_WAVES = 21
 #Stops Main meniu music once game starts
 func _ready() -> void:
 	add_to_group("game_map")
@@ -309,8 +310,13 @@ func _has_game_over() -> bool:
 	return is_game_over
 
 func _update_wave_label() -> void:
-	if wave_label:
-		wave_label.text = str(current_wave) + "/" + str(total_waves)
+	if not wave_label:
+		return
+
+	if current_wave >= total_waves:
+		wave_label.text = "BOSS"
+	else:
+		wave_label.text = str(current_wave) + "/" + str(total_waves - 1)
 		
 func _on_wave_start_pressed() -> void:
 	if is_wave_flow_running or is_game_over:

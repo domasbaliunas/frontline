@@ -160,5 +160,11 @@
 			{ "type": "weak", "count": 12, "delay": 0.3 },
 			{ "type": "strong", "count": 6, "delay": 1.0 }
 		]
+	},
+	{
+		"_wave": 21,
+		"enemies": [
+			{ "type": "boss", "count": 1, "delay": 0.4 }
+		]
 	}
 ]
