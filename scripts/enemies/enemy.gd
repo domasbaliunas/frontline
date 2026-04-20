@@ -3,6 +3,10 @@ class_name Enemy
 
 const DAMAGE_POPUP_SCRIPT = preload("res://scripts/ui/damage_popup.gd")
 
+signal boss_spawned(current_hp, max_hp)
+signal boss_health_changed(current_hp, max_hp)
+signal boss_died
+
 @export var speed: float = 75
 @export var max_health: float = 100
 @export var coin_reward: int = 10
@@ -11,6 +15,9 @@ const DAMAGE_POPUP_SCRIPT = preload("res://scripts/ui/damage_popup.gd")
 	"normal": 0.0,
 	"sniper": 0.0
 }
+
+@export_group("Boss")
+@export var is_boss: bool = false
 
 @export_group("Damage Popup")
 @export var damage_popup_offset: Vector2 = Vector2(0, -20)
@@ -30,6 +37,9 @@ func _ready() -> void:
 	health = max_health
 	path_follow = get_parent() as PathFollow2D
 	add_to_group("mobs")
+
+	if is_boss:
+		add_to_group("boss")
 
 func _process(delta: float) -> void:
 	move_along_path(delta)
@@ -63,6 +73,9 @@ func take_damage(amount: float, is_critical_hit: bool = false, tower_type: Strin
 	_spawn_damage_popup(final_damage, is_killing_blow, is_critical_hit)
 	print("Mob health:", health)
 
+	if is_boss:
+		boss_health_changed.emit(max(health, 0.0), max_health)
+
 	if is_killing_blow:
 		die()
 
@@ -85,12 +98,16 @@ func _spawn_damage_popup(amount: float, is_killing_blow: bool, is_critical_hit: 
 	popup.kill_color = damage_popup_kill_color
 	popup.setup(int(round(amount)), is_killing_blow, is_critical_hit)
 	get_tree().current_scene.add_child(popup)
-		
+
 func die() -> void:
 	print("Mob died!")
+
+	if is_boss:
+		boss_died.emit()
+
 	Currency.add_coins(coin_reward)
 	queue_free()
-	
+
 func _input(event):
-	if event.is_action_pressed("ui_accept"):  
+	if event.is_action_pressed("ui_accept"):
 		take_damage(25)

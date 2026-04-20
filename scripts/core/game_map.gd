@@ -7,6 +7,7 @@ extends Node2D
 @onready var player = $Player
 @onready var wave_button: Button = $WaveStartButton
 @onready var auto_wave_button: Button = $AutoWaveStartButton
+@onready var boss_health_ui = find_child("BossHealth", true, false)
 
 var money_factory_scene = preload("res://scenes/towers/money_factory.tscn")
 var placing_money_factory : bool = false
@@ -285,8 +286,18 @@ func _spawn_enemy(enemy_type: String) -> void:
 
 	var enemy = enemy_scene.instantiate()
 	path_follow.add_child(enemy)
+
 	if enemy.has_signal("tree_exited"):
 		enemy.tree_exited.connect(path_follow.queue_free, CONNECT_ONE_SHOT)
+
+	if enemy_type == "boss":
+		if boss_health_ui == null:
+			push_error("BossHealthUI not found")
+			return
+
+		boss_health_ui.show_boss_health(enemy.health, enemy.max_health)
+		enemy.boss_health_changed.connect(boss_health_ui.update_boss_health)
+		enemy.boss_died.connect(boss_health_ui.hide_boss_health)
 
 func _wait_until_wave_is_clear() -> void:
 	while true:
