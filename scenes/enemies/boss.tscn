@@ -15,6 +15,7 @@ resistances = {
 "normal": 0.5,
 "sniper": 0.5
 }
+is_boss = true
 metadata/_custom_type_script = "uid://m8bt8lcm5b7k"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1218767671]

@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bolyxhciyhyq0" path="res://assets/images/props/Chicken.png" id="6_7hf5s"]
 [ext_resource type="Texture2D" uid="uid://1bm63sxxm2tx" path="res://assets/images/ui/Coin.png" id="7_g3l8d"]
 [ext_resource type="Script" uid="uid://diyeuqakb35q" path="res://scripts/ui/damage_flash.gd" id="8_n8lm6"]
+[ext_resource type="Script" uid="uid://dk5wkmmtrefu5" path="res://scripts/ui/boss_health.gd" id="9_i08f8"]
 [ext_resource type="Texture2D" uid="uid://b1ve6svi420l1" path="res://assets/images/ui/play-button-round-icon.svg" id="12_mluw0"]
 [ext_resource type="Texture2D" uid="uid://ukvckiiu0u6o" path="res://assets/images/ui/download.png" id="13_3dcwv"]
 [ext_resource type="Texture2D" uid="uid://d2t3ja0r5hles" path="res://assets/images/ui/potatoHP.png" id="13_bp2s2"]
@@ -598,6 +599,9 @@ _data = {
 }
 point_count = 98
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yna2q"]
+bg_color = Color(0.69789743, 0.12835406, 0.106126174, 1)
+
 [sub_resource type="Theme" id="Theme_mluw0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hf5s"]
@@ -737,6 +741,30 @@ mouse_filter = 2
 color = Color(0.48383957, 0.10542718, 0.10536886, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=978697804]
+
+[node name="BossHealth" type="Control" parent="CanvasLayer" unique_id=1908072598]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("9_i08f8")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/BossHealth" unique_id=1717202889]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 5.0
+offset_right = 850.0
+offset_bottom = 35.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_yna2q")
+value = 60.0
+
+[node name="ValueLabel" type="Label" parent="CanvasLayer/BossHealth" unique_id=1522408298]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 369.0
+offset_bottom = 31.0
+text = "50000/5000"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=657262974]
 offset_left = 5.0

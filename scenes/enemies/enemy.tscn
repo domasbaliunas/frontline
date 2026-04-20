@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sgia5wphopvw"]
 
-[ext_resource type="Script" uid="uid://m8bt8lcm5b7k" path="res://scripts/enemies/enemy.gd" id="1_3ogw4"]   
+[ext_resource type="Script" uid="uid://m8bt8lcm5b7k" path="res://scripts/enemies/enemy.gd" id="1_3ogw4"]
 [ext_resource type="Texture2D" uid="uid://cudi5ed1no1k5" path="res://assets/images/enemies/Farmer.png" id="2_2kdye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6b5h"]
