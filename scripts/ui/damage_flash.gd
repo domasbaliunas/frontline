@@ -8,7 +8,6 @@ func _ready():
 	damage_flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func play_damage_flash():
-	print("FLASH PLAYED") 
 	
 	if flash_tween and flash_tween.is_valid():
 		flash_tween.kill()
