@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cmg4nm2bf4wox"]
+
+[ext_resource type="Script" uid="uid://m8bt8lcm5b7k" path="res://scripts/enemies/enemy.gd" id="1_aipsv"]
+[ext_resource type="Texture2D" uid="uid://d0lw8wsllks8k" path="res://assets/images/enemies/BossTractor.png" id="2_bhsub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ryfi"]
+size = Vector2(107, 78)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=2089478898]
+script = ExtResource("1_aipsv")
+speed = 10.0
+max_health = 50000.0
+coin_reward = 2500
+resistances = {
+"normal": 0.5,
+"sniper": 0.5
+}
+metadata/_custom_type_script = "uid://m8bt8lcm5b7k"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1218767671]
+position = Vector2(2.5, -2)
+shape = SubResource("RectangleShape2D_4ryfi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=620521611]
+texture = ExtResource("2_bhsub")
