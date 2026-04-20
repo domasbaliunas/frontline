@@ -58,15 +58,16 @@ func try_place():
 	if Currency.coins < price:
 		print("Not enough coins!")
 		return
+		
 	var tower_count = get_tree().get_nodes_in_group("towers").size()
-	
 	var tower = selected_scene.instantiate()
+	tower.cost = price 
 	tower.global_position = current_preview.global_position
-	tower.name = "%s_%d" % [selected_tower_type, tower_count]  
+	tower.name = "%s_%d" % [selected_tower_type, tower_count]
 	if tower.has_method("set_preview_mode"):
 		tower.set_preview_mode(false)
+		
 	get_tree().current_scene.add_child(tower)
-	
 	Currency.spend_coins(price)
 	cancel_build()
 

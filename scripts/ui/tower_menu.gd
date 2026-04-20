@@ -4,7 +4,7 @@ var selected_tower = null
 @onready var panel = $Panel
 @onready var label = $Panel/VBoxContainer/Label
 @onready var sell_button = $Panel/VBoxContainer/Button
-const coef = 0.7
+#const coef = 0.7
 var just_opened: bool = false
 
 func _ready():
@@ -27,8 +27,8 @@ func close_menu():
 func _on_sell_pressed():
 	if selected_tower == null:
 		return
-	var refund = int(selected_tower.cost * coef)
-	Currency.add_coins(refund)
+	if selected_tower.has_method("sell_tower"):
+		selected_tower.sell_tower()
 
 	selected_tower.queue_free()
 	close_menu()

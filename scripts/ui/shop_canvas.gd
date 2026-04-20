@@ -75,13 +75,16 @@ func _on_button_pressed():
 
 
 func _on_tower_b_pressed():
-	if Currency.coins >= 10:
-		TowerPlacer.start_build(tower_scene, 10, "Tower")
+	var price = 10 
+	if Currency.coins >= price:
+		TowerPlacer.start_build(tower_scene, price, "Tower")
 
 func _on_money_b_pressed():
-	if Currency.coins >= 100:
-		TowerPlacer.start_build(money_scene, 100, "Money")
+	var price = 100
+	if Currency.coins >= price:
+		TowerPlacer.start_build(money_scene, price, "Money")
 
 func _on_sniper_b_pressed():
-	if Currency.coins >= 50:
-		TowerPlacer.start_build(sniper_scene, 50, "Sniper")
+	var price = 50
+	if Currency.coins >= price:
+		TowerPlacer.start_build(sniper_scene, price, "Sniper")
