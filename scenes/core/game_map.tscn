@@ -959,4 +959,5 @@ text = "1X"
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Money_B" to="ShopCanvas" method="_on_money_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Sniper_B" to="ShopCanvas" method="_on_sniper_b_pressed"]
+[connection signal="pressed" from="WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="SpeedButton" to="." method="_on_speed_button_pressed"]
