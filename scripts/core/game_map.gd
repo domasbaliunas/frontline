@@ -270,9 +270,15 @@ func _spawn_wave(wave_number: int) -> void:
 			if _has_game_over():
 				return
 
+			if not is_inside_tree():
+				return
+
 			_spawn_enemy(enemy_type)
 			if delay_seconds > 0.0:
-				await get_tree().create_timer(delay_seconds).timeout
+				var tree := get_tree()
+				if tree == null:
+					return
+				await tree.create_timer(delay_seconds).timeout
 
 func _spawn_enemy(enemy_type: String) -> void:
 	var enemy_scene: PackedScene = enemy_scenes.get(enemy_type)
@@ -301,13 +307,20 @@ func _spawn_enemy(enemy_type: String) -> void:
 
 func _wait_until_wave_is_clear() -> void:
 	while true:
+		if not is_inside_tree():
+			return
+
 		if _has_game_over():
 			return
 
-		if get_tree().get_nodes_in_group("mobs").is_empty():
+		var tree := get_tree()
+		if tree == null:
 			return
 
-		await get_tree().process_frame
+		if tree.get_nodes_in_group("mobs").is_empty():
+			return
+
+		await tree.process_frame
 
 func _has_game_over() -> bool:
 	if is_game_over:
@@ -348,11 +361,24 @@ func _on_wave_start_pressed() -> void:
 	is_wave_flow_running = false
 	if current_wave < total_waves and not is_game_over:
 		if auto_wave_button.button_pressed: 
-			await get_tree().create_timer(1.0).timeout 
+			if not is_inside_tree():
+				return
+			var tree := get_tree()
+			if tree == null:
+				return
+			await tree.create_timer(1.0).timeout 
+			if not is_inside_tree():
+				return
 			_on_wave_start_pressed()
 		else:
 			wave_button.disabled = false
 			_make_button_green(wave_button)
+
+func _exit_tree() -> void:
+	# Stop wave flow and restore default engine speed during scene reload.
+	is_game_over = true
+	is_wave_flow_running = false
+	Engine.time_scale = 1.0
 		
 func _make_button_green(button: Button) -> void:
 	var normal_style := StyleBoxFlat.new()
