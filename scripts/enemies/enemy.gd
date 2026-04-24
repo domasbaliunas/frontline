@@ -107,7 +107,3 @@ func die() -> void:
 
 	Currency.add_coins(coin_reward)
 	queue_free()
-
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		take_damage(25)
