@@ -22,6 +22,12 @@ MeniuMusic="*uid://rmst0aa5yhpm"
 GameMusic="*uid://dcaw1ppk7tfda"
 TowerPlacer="*uid://b3ve4hkikk0gh"
 
+[display]
+
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="canvas_items"
+
 [input]
 
 esc={
