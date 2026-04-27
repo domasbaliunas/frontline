@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://assets/images/towers/tower.png" id="15_mluw0"]
 [ext_resource type="Texture2D" uid="uid://br81vgq2m0ss4" path="res://assets/images/towers/Money_factory.png" id="16_4j60y"]
 [ext_resource type="Texture2D" uid="uid://ck23riskbm8wk" path="res://assets/images/towers/snipertowerpng.png" id="17_3dcwv"]
+[ext_resource type="Script" uid="uid://byn7bvc4jijy1" path="res://scenes/core/wave_complete_message.gd" id="21_lj1gy"]
+[ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://assets/fonts/Enchanted Land.otf" id="22_j2tyq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3l8d"]
 texture = ExtResource("1_qohhg")
@@ -638,6 +640,14 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8anjt"]
+bg_color = Color(0, 0, 0, 0.32500002)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 6
+
 [node name="Map" type="Node2D" unique_id=782828480]
 script = ExtResource("1_bp2s2")
 
@@ -955,9 +965,32 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6qxoo")
 toggle_mode = true
 text = "1X"
 
+[node name="WaveCompleteMessage" type="CanvasLayer" parent="." unique_id=798471542]
+script = ExtResource("21_lj1gy")
+
+[node name="Panel" type="Panel" parent="WaveCompleteMessage" unique_id=1418941974]
+offset_left = 314.0
+offset_top = 194.0
+offset_right = 759.0
+offset_bottom = 286.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8anjt")
+
+[node name="completedLabel" type="Label" parent="WaveCompleteMessage/Panel" unique_id=1679161591]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 425.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.29936945, 0.7354048, 1.92523e-06, 1)
+theme_override_fonts/font = ExtResource("22_j2tyq")
+theme_override_font_sizes/font_size = 67
+text = "Wave completed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Tower_B" to="ShopCanvas" method="_on_tower_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Money_B" to="ShopCanvas" method="_on_money_b_pressed"]
 [connection signal="pressed" from="ShopCanvas/PanelContainer/VBoxContainer/Sniper_B" to="ShopCanvas" method="_on_sniper_b_pressed"]
-[connection signal="pressed" from="WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="SpeedButton" to="." method="_on_speed_button_pressed"]

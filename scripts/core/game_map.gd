@@ -8,6 +8,7 @@ extends Node2D
 @onready var wave_button: Button = $WaveStartButton
 @onready var auto_wave_button: Button = $AutoWaveStartButton
 @onready var boss_health_ui = find_child("BossHealth", true, false)
+@onready var wave_complete = $WaveCompleteMessage
 
 var money_factory_scene = preload("res://scenes/towers/money_factory.tscn")
 var placing_money_factory : bool = false
@@ -66,6 +67,9 @@ func is_money_factory_generation_allowed() -> bool:
 	return is_wave_flow_running and not get_tree().paused and not _has_game_over()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if get_tree().paused:
+			return
+	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		
 		var selected = shop.selected_tower_type 
@@ -248,10 +252,16 @@ func _run_wave_flow() -> void:
 
 		current_wave = wave_number
 		_update_wave_label()
+		
 		await _spawn_wave(wave_number)
 		await _wait_until_wave_is_clear()
-
+		
+		if Engine.time_scale == 1.0 and not is_game_over:
+			await wave_complete.show_message()
+		
 	is_wave_flow_running = false
+	wave_button.disabled = false
+	_make_button_green(wave_button)
 
 func _spawn_wave(wave_number: int) -> void:
 	if wave_number <= 0 or wave_number > waves_data.size():
@@ -358,6 +368,10 @@ func _on_wave_start_pressed() -> void:
 	is_wave_flow_running = true
 	await _spawn_wave(current_wave)
 	await _wait_until_wave_is_clear()
+	
+	if Engine.time_scale == 1.0 and not is_game_over:
+		await wave_complete.show_message()
+	
 	is_wave_flow_running = false
 	if current_wave < total_waves and not is_game_over:
 		if auto_wave_button.button_pressed: 
