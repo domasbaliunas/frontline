@@ -13,7 +13,21 @@ func _ready():
 
 func open_menu(tower):
 	selected_tower = tower
-	label.text = "Tower: %s\nDamage: %s\nRange: %s" % [tower.name, tower.base_damage, tower.range_value]
+
+	if tower.has_method("_can_generate_money"):
+		var per_minute = int((60.0 / tower.tick_speed) * tower.money_per_tick)
+
+		label.text = "Tower: %s\nMoney / Minute: %s\n" % [
+			tower.name,
+			per_minute
+		]
+	else:
+		label.text = "Tower: %s\nDamage: %s\nRange: %s" % [
+			tower.name,
+			tower.base_damage,
+			tower.range_value
+		]
+
 	panel.global_position = tower.global_position + Vector2(40, -40)
 	just_opened = true
 	show()
