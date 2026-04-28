@@ -8,7 +8,5 @@ func _ready():
 
 func show_message():
 	visible = true
-	get_tree().paused = true
 	await get_tree().create_timer(2.0, true, false, true).timeout
 	visible = false
-	get_tree().paused = false

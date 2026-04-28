@@ -257,7 +257,7 @@ func _run_wave_flow() -> void:
 		await _wait_until_wave_is_clear()
 		
 		if Engine.time_scale == 1.0 and not is_game_over:
-			await wave_complete.show_message()
+			wave_complete.show_message()
 		
 	is_wave_flow_running = false
 	wave_button.disabled = false
@@ -370,7 +370,7 @@ func _on_wave_start_pressed() -> void:
 	await _wait_until_wave_is_clear()
 	
 	if Engine.time_scale == 1.0 and not is_game_over:
-		await wave_complete.show_message()
+		wave_complete.show_message()
 	
 	is_wave_flow_running = false
 	if current_wave < total_waves and not is_game_over:
