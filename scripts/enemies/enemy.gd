@@ -10,6 +10,7 @@ signal boss_died
 @export var speed: float = 75
 @export var max_health: float = 100
 @export var coin_reward: int = 10
+var death_effect_scene = preload("res://scenes/enemies/death_effect.tscn")
 
 @export var resistances: Dictionary = {
 	"normal": 0.0,
@@ -104,6 +105,21 @@ func die() -> void:
 
 	if is_boss:
 		boss_died.emit()
+		_spawn_boss_death_animation()
 
 	Currency.add_coins(coin_reward)
-	queue_free()
+	queue_free() 
+
+
+func _spawn_boss_death_animation() -> void:
+	var effect = death_effect_scene.instantiate() as AnimatedSprite2D
+	get_tree().current_scene.add_child(effect)
+	
+	effect.global_position = global_position
+	effect.z_index = 100
+	effect.play("default")
+	
+	get_tree().create_timer(0.5).timeout.connect(func():
+		effect.modulate.a = 0.0
+		effect.queue_free()
+	)
