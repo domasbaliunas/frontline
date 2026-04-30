@@ -20,8 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://assets/images/towers/tower.png" id="15_mluw0"]
 [ext_resource type="Texture2D" uid="uid://br81vgq2m0ss4" path="res://assets/images/towers/Money_factory.png" id="16_4j60y"]
 [ext_resource type="Texture2D" uid="uid://ck23riskbm8wk" path="res://assets/images/towers/snipertowerpng.png" id="17_3dcwv"]
-[ext_resource type="Script" uid="uid://byn7bvc4jijy1" path="res://scenes/core/wave_complete_message.gd" id="21_lj1gy"]
+[ext_resource type="Script" uid="uid://byn7bvc4jijy1" path="res://scripts/ui/wave_complete_message.gd" id="21_lj1gy"]
 [ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://assets/fonts/Enchanted Land.otf" id="22_j2tyq"]
+[ext_resource type="Script" uid="uid://cltswv4dfdijr" path="res://scripts/ui/wave_progress.gd" id="23_j2tyq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3l8d"]
 texture = ExtResource("1_qohhg")
@@ -648,6 +649,9 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ufmj"]
+bg_color = Color(0.2672974, 0.6646851, 0, 1)
+
 [node name="Map" type="Node2D" unique_id=782828480]
 script = ExtResource("1_bp2s2")
 
@@ -987,6 +991,33 @@ theme_override_font_sizes/font_size = 67
 text = "Wave completed"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WaveProgressBar" type="CanvasLayer" parent="." unique_id=1249339250]
+
+[node name="WaveProgress" type="Control" parent="WaveProgressBar" unique_id=1174359167]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("23_j2tyq")
+
+[node name="WaveProgressBar" type="ProgressBar" parent="WaveProgressBar/WaveProgress" unique_id=894360742]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 4.0
+offset_right = 849.0
+offset_bottom = 36.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0ufmj")
+value = 50.0
+
+[node name="WaveValueLabel" type="Label" parent="WaveProgressBar/WaveProgress" unique_id=978623851]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 7.0
+offset_right = 376.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "Wave Progress"
 
 [connection signal="pressed" from="WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]
