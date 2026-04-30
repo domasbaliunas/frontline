@@ -9,6 +9,7 @@ extends Node2D
 @onready var auto_wave_button: Button = $AutoWaveStartButton
 @onready var boss_health_ui = find_child("BossHealth", true, false)
 @onready var wave_complete = $WaveCompleteMessage
+@onready var wave_progress_ui = $WaveProgressBar/WaveProgress
 
 var money_factory_scene = preload("res://scenes/towers/money_factory.tscn")
 var placing_money_factory : bool = false
@@ -19,6 +20,7 @@ var basic_tower_scene = preload("res://scenes/towers/Tower.tscn")
 var placing_tower: bool = false
 var distance_apart: int = 5
 var tower_id: int = 1
+var enemy_max_health_cache: Dictionary = {}
 
 var enemy_scenes := {
 	"standard": preload("res://scenes/enemies/enemy.tscn"),
@@ -62,6 +64,10 @@ func _ready() -> void:
 		_make_button_yellow(auto_wave_button, is_on)
 		if is_on and not is_wave_flow_running:
 			_on_wave_start_pressed())
+			
+func _process(_delta: float) -> void:
+	if is_wave_flow_running and current_wave < total_waves and wave_progress_ui != null:
+		wave_progress_ui.update_wave_progress(_get_alive_wave_health_sum())
 
 func is_money_factory_generation_allowed() -> bool:
 	return is_wave_flow_running and not get_tree().paused and not _has_game_over()
@@ -295,6 +301,11 @@ func _spawn_enemy(enemy_type: String) -> void:
 	if enemy_scene == null:
 		push_warning("Unknown enemy type: " + enemy_type)
 		return
+		
+	var enemy_max_hp := _get_enemy_max_health(enemy_type)
+
+	if current_wave < total_waves and wave_progress_ui != null:
+		wave_progress_ui.enemy_spawned(enemy_max_hp)
 
 	var path_follow := PathFollow2D.new()
 	path_follow.loop = false
@@ -361,6 +372,11 @@ func _on_wave_start_pressed() -> void:
 		return
 
 	_update_wave_label()
+	if current_wave >= total_waves:
+		wave_progress_ui.reset()
+	else:
+		var total_health := _calculate_wave_initial_health(current_wave)
+		wave_progress_ui.start_wave(total_health)
 
 	wave_button.disabled = true
 	_make_button_default(wave_button)
@@ -368,6 +384,7 @@ func _on_wave_start_pressed() -> void:
 	is_wave_flow_running = true
 	await _spawn_wave(current_wave)
 	await _wait_until_wave_is_clear()
+	wave_progress_ui.complete_wave()
 	
 	if Engine.time_scale == 1.0 and not is_game_over:
 		wave_complete.show_message()
@@ -506,3 +523,47 @@ func _update_speed_button_style(button: Button, active: bool) -> void:
 	button.add_theme_stylebox_override("normal", style)
 	button.add_theme_stylebox_override("hover", style)
 	button.add_theme_stylebox_override("pressed", style)
+	
+func _get_enemy_max_health(enemy_type: String) -> float:
+	if enemy_max_health_cache.has(enemy_type):
+		return enemy_max_health_cache[enemy_type]
+
+	var enemy_scene: PackedScene = enemy_scenes.get(enemy_type)
+	if enemy_scene == null:
+		push_warning("Unknown enemy type: " + enemy_type)
+		return 0.0
+
+	var enemy = enemy_scene.instantiate()
+	var hp := float(enemy.get("max_health"))
+	enemy.queue_free()
+
+	enemy_max_health_cache[enemy_type] = hp
+	return hp
+
+
+func _calculate_wave_initial_health(wave_number: int) -> float:
+	if wave_number <= 0 or wave_number > waves_data.size():
+		return 0.0
+
+	var total := 0.0
+	var wave_data = waves_data[wave_number - 1] as Dictionary
+	var wave_enemies = wave_data.get("enemies", []) as Array
+
+	for group in wave_enemies:
+		var group_data = group as Dictionary
+		var enemy_type := str(group_data.get("type", "standard"))
+		var count := int(group_data.get("count", 0))
+		var hp := _get_enemy_max_health(enemy_type)
+
+		total += hp * count
+
+	return total
+
+
+func _get_alive_wave_health_sum() -> float:
+	var total := 0.0
+
+	for mob in get_tree().get_nodes_in_group("mobs"):
+		total += maxf(float(mob.get("health")), 0.0)
+
+	return total
