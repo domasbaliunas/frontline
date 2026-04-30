@@ -20,9 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://mbblile0rgbk" path="res://assets/images/towers/tower.png" id="15_mluw0"]
 [ext_resource type="Texture2D" uid="uid://br81vgq2m0ss4" path="res://assets/images/towers/Money_factory.png" id="16_4j60y"]
 [ext_resource type="Texture2D" uid="uid://ck23riskbm8wk" path="res://assets/images/towers/snipertowerpng.png" id="17_3dcwv"]
-[ext_resource type="Script" uid="uid://byn7bvc4jijy1" path="res://scenes/core/wave_complete_message.gd" id="21_lj1gy"]
+[ext_resource type="Script" uid="uid://byn7bvc4jijy1" path="res://scripts/ui/wave_complete_message.gd" id="21_lj1gy"]
 [ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://assets/fonts/Enchanted Land.otf" id="22_j2tyq"]
-[ext_resource type="Script" uid="uid://cltswv4dfdijr" path="res://scenes/core/wave_progress.gd" id="23_j2tyq"]
+[ext_resource type="Script" uid="uid://cltswv4dfdijr" path="res://scripts/ui/wave_progress.gd" id="23_j2tyq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3l8d"]
 texture = ExtResource("1_qohhg")
