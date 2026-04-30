@@ -119,7 +119,7 @@ func _spawn_boss_death_animation() -> void:
 	effect.z_index = 100
 	effect.play("default")
 	
-	get_tree().create_timer(0.5).timeout.connect(func():
+	get_tree().create_timer(2.5).timeout.connect(func():
 		effect.modulate.a = 0.0
 		effect.queue_free()
 	)
