@@ -20,7 +20,7 @@ var attack_timer: Timer
 var range_value: float
 var range_shape: CircleShape2D
 var shots_fired: int = 0
-@export var cost: int = 0  
+@export var cost: int = 0
 var sell_value: int:
 	get:
 		return int(cost * 0.7)
@@ -29,8 +29,7 @@ func sell_tower():
 	if Currency:
 		Currency.add_coins(sell_value)
 		print("Bokštas parduotas už: ", sell_value)
-		queue_free() 
-
+		queue_free()
 
 var is_preview: bool = false
 var is_placement_valid: bool = true
@@ -40,23 +39,25 @@ func _ready() -> void:
 		range_shape = (range_shape_node.shape as CircleShape2D).duplicate()
 		range_shape_node.shape = range_shape
 		range_value = range_shape.radius
-	
+
 	attack_timer = Timer.new()
 	attack_timer.wait_time = 1.0 / maxf(attack_speed, 0.001)
 	attack_timer.one_shot = false
 	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))
 	add_child(attack_timer)
-	
+
 	if area:
 		area.input_event.connect(_on_click_area_input)
-	
+
 	update_range_visual()
-	
+
 	if is_preview:
-		if range_visual: range_visual.visible = true
+		if range_visual:
+			range_visual.visible = true
 		attack_timer.paused = true
 	else:
-		if range_visual: range_visual.visible = false
+		if range_visual:
+			range_visual.visible = false
 		attack_timer.start()
 
 func _process(_delta: float) -> void:
@@ -64,8 +65,9 @@ func _process(_delta: float) -> void:
 		update_placement_visuals()
 
 func update_placement_visuals():
-	if not range_visual or not tower_sprite: return
-	
+	if not range_visual or not tower_sprite:
+		return
+
 	if is_placement_valid:
 		range_visual.color = Color(0, 1, 0, 0.2)
 		tower_sprite.modulate = Color(1, 1, 1, 1)
@@ -82,29 +84,31 @@ func set_range(new_range: float) -> void:
 func update_range_visual():
 	if not range_visual:
 		return
-	
+
 	var points = PackedVector2Array()
 	var segments = 64
-	
+
 	for i in segments:
 		var angle = TAU * float(i) / float(segments)
 		points.append(Vector2(cos(angle), sin(angle)) * range_value)
-	
+
 	range_visual.polygon = points
 
 func set_preview_mode(enabled: bool):
 	is_preview = enabled
-	
+
 	if range_visual:
 		range_visual.visible = enabled
 		update_placement_visuals()
-	
+
 	if attack_timer:
 		attack_timer.paused = enabled
-	
+
 	if not enabled:
-		if tower_sprite: tower_sprite.modulate = Color(1, 1, 1, 1)
-		if range_visual: range_visual.color = Color(1, 0.6, 0.6, 0.2)
+		if tower_sprite:
+			tower_sprite.modulate = Color(1, 1, 1, 1)
+		if range_visual:
+			range_visual.color = Color(1, 0.6, 0.6, 0.2)
 		if not is_in_group("towers"):
 			add_to_group("towers")
 
@@ -120,20 +124,29 @@ func _on_attack_timer_timeout():
 		attack(target)
 
 func get_target():
-	if not range_area: return null
-	var closest = null
-	var closest_dist = INF
-	
+	if not range_area:
+		return null
+
+	var best_target = null
+	var best_progress = -INF
+
 	for body in range_area.get_overlapping_bodies():
 		if not body.is_in_group("mobs"):
 			continue
-			
-		var dist = global_position.distance_to(body.global_position)
-		if dist < closest_dist:
-			closest = body
-			closest_dist = dist
-			
-	return closest
+
+		if not is_instance_valid(body):
+			continue
+
+		if body.path_follow == null:
+			continue
+
+		var progress = body.path_follow.progress
+
+		if progress > best_progress:
+			best_progress = progress
+			best_target = body
+
+	return best_target
 
 func attack(target):
 	if projectile_scene == null:
@@ -144,7 +157,7 @@ func attack(target):
 
 	var is_critical_hit := critical_shot_interval > 0 and shots_fired % critical_shot_interval == 0
 	var final_damage := base_damage
-	
+
 	if is_critical_hit:
 		final_damage *= critical_damage_multiplier
 
@@ -153,7 +166,7 @@ func attack(target):
 	proj.damage = final_damage
 	proj.is_critical_hit = is_critical_hit
 	proj.tower_type = tower_type
-	
+
 	get_tree().current_scene.add_child(proj)
 
 func _on_click_area_input(_viewport, event, _shape_idx):
@@ -161,16 +174,16 @@ func _on_click_area_input(_viewport, event, _shape_idx):
 		var build_manager = get_tree().get_first_node_in_group("build_manager")
 		if build_manager and build_manager.current_preview != null:
 			return
-		
+
 		if not is_preview:
 			for tower in get_tree().get_nodes_in_group("towers"):
 				if tower.has_method("set_range_visible"):
 					tower.set_range_visible(false)
-			
+
 			if range_visual:
 				range_visual.color = Color(0, 0, 0, 0.2)
 				range_visual.visible = true
-		
+
 		var menu = get_tree().get_first_node_in_group("tower_menu")
 		if menu:
 			menu.open_menu(self)

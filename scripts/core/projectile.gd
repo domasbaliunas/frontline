@@ -6,21 +6,31 @@ var damage: float = 25.0
 var is_critical_hit: bool = false
 var tower_type: String = "normal"
 
+const TRAVEL_TIME: float = 0.2
+
+var start_position: Vector2
+var elapsed_time: float = 0.0
+
 func _ready() -> void:
-	pass
+	start_position = global_position
 
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target) \
-		or not target.is_in_group("mobs"):
+	or not target.is_in_group("mobs"):
 		queue_free()
 		return
-	
-	var direction = (target.global_position - global_position).normalized()
-	global_position += direction * speed * delta
 
-	if global_position.distance_to(target.global_position) < 10:
-		target.take_damage(_determine_damage(target), is_critical_hit, tower_type)
+	elapsed_time += delta
+
+	var target_position = target.global_position
+	var t = min(elapsed_time / TRAVEL_TIME, 1.0)
+
+	global_position = start_position.lerp(target_position, t)
+
+	if t >= 1.0:
+		if is_instance_valid(target):
+			target.take_damage(_determine_damage(target), is_critical_hit, tower_type)
 		queue_free()
-		
+
 func _determine_damage(_target: Enemy) -> float:
 	return maxf(damage, 0.0)
