@@ -2,12 +2,21 @@ extends Control
 
 @onready var slider = $MusicSlider
 @onready var mute_btn = $MuteButton
+@onready var screen_cb = $ScreenAnimationsCheckBox
+@onready var entity_cb = $EntitiesAnimationsCheckBox
+@onready var damage_cb = $DamagePopupCheckBox
+@onready var wave_cb = $WavePopupCheckBox
+
 
 func _ready():
 	slider.value = MeniuMusic.music_volume
 	slider.value = GameMusic.music_volume
 	slider.editable = !MeniuMusic.muted
 	slider.editable = !GameMusic.muted
+	screen_cb.button_pressed = Settings.screen_animations
+	entity_cb.button_pressed = Settings.entity_animations
+	damage_cb.button_pressed = Settings.damage_popup
+	wave_cb.button_pressed = Settings.wave_popup
 	_update_mute_button_text()
 
 func _on_music_slider_value_changed(value: float) -> void:
@@ -30,3 +39,33 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 	else:
 		self.visible = false
+func update_texts():
+	screen_cb.text = "Screen Animations: " + get_state(Settings.screen_animations)
+	entity_cb.text = "Entities Animations: " + get_state(Settings.entity_animations)
+	damage_cb.text = "Damage Popup: " + get_state(Settings.damage_popup)
+	wave_cb.text = "Wave Popup: " + get_state(Settings.wave_popup)
+
+func get_state(value: bool) -> String:
+	return "ON" if value else "OFF"
+
+func _on_screen_animations_check_box_toggled(pressed) -> void:
+	Settings.screen_animations = pressed
+	print(get_tree().get_nodes_in_group("screen_animations").size())
+	for node in get_tree().get_nodes_in_group("screen_animations"):
+		var anim = node.get_node_or_null("AnimationPlayer")
+		if anim:
+			if pressed:
+				anim.play()
+			else:
+				anim.pause()
+
+func _on_entities_animations_check_box_toggled(pressed) -> void:
+	Settings.entity_animations = pressed
+
+
+func _on_damage_popup_check_box_toggled(pressed) -> void:
+	Settings.damage_popup = pressed
+
+
+func _on_wave_popup_check_box_toggled(pressed) -> void:
+	Settings.wave_popup = pressed
