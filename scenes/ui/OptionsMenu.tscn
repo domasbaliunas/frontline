@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cexe0m3brsd32"]
 
-[ext_resource type="Script" uid="uid://eixgomlbsml0" path="res://scripts/ui/optionsMenu.gd" id="1_58l1r"] 
+[ext_resource type="Script" uid="uid://ckas3un14h61g" path="res://scripts/ui/optionsMenu.gd" id="1_58l1r"]
 
 [node name="OptionsMenu" type="Control" unique_id=1022677496]
 layout_mode = 3
@@ -10,28 +10,64 @@ script = ExtResource("1_58l1r")
 [node name="MusicSlider" type="HSlider" parent="." unique_id=1310413947]
 layout_mode = 0
 offset_left = 277.0
-offset_top = 265.0
+offset_top = 396.0
 offset_right = 890.0
-offset_bottom = 293.0
+offset_bottom = 424.0
 max_value = 1.0
 step = 0.01
-
-[node name="MuteButton" type="Button" parent="." unique_id=750882784]
-layout_mode = 0
-offset_left = 475.0
-offset_top = 356.0
-offset_right = 699.0
-offset_bottom = 405.0
-text = "Mute"
 
 [node name="BackButton" type="Button" parent="." unique_id=116553220]
 layout_mode = 0
 offset_left = 476.0
-offset_top = 430.0
+offset_top = 527.0
 offset_right = 698.0
-offset_bottom = 480.0
+offset_bottom = 577.0
 text = "Return"
 
+[node name="MuteButton" type="Button" parent="." unique_id=1474773180]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 450.0
+offset_right = 699.0
+offset_bottom = 499.0
+text = "Mute"
+
+[node name="ScreenAnimationsCheckBox" type="CheckBox" parent="." unique_id=436427142]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 104.0
+offset_right = 101.0
+offset_bottom = 144.0
+text = "Screen Animations"
+
+[node name="EntitiesAnimationsCheckBox" type="CheckBox" parent="." unique_id=194875674]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 148.0
+offset_right = 101.0
+offset_bottom = 188.0
+text = "Entities Animations"
+
+[node name="DamagePopupCheckBox" type="CheckBox" parent="." unique_id=726059657]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 187.0
+offset_right = 101.0
+offset_bottom = 227.0
+text = "Damage Popup"
+
+[node name="WavePopupCheckBox" type="CheckBox" parent="." unique_id=973580548]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 231.0
+offset_right = 101.0
+offset_bottom = 271.0
+text = "Wave Popup"
+
 [connection signal="value_changed" from="MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="pressed" from="MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="toggled" from="ScreenAnimationsCheckBox" to="." method="_on_screen_animations_check_box_toggled"]
+[connection signal="toggled" from="EntitiesAnimationsCheckBox" to="." method="_on_entities_animations_check_box_toggled"]
+[connection signal="toggled" from="DamagePopupCheckBox" to="." method="_on_damage_popup_check_box_toggled"]
+[connection signal="toggled" from="WavePopupCheckBox" to="." method="_on_wave_popup_check_box_toggled"]

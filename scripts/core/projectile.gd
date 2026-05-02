@@ -15,6 +15,7 @@ func _ready() -> void:
 	start_position = global_position
 
 func _process(delta: float) -> void:
+
 	if target == null or not is_instance_valid(target) \
 	or not target.is_in_group("mobs"):
 		queue_free()
@@ -25,7 +26,12 @@ func _process(delta: float) -> void:
 	var target_position = target.global_position
 	var t = min(elapsed_time / TRAVEL_TIME, 1.0)
 
-	global_position = start_position.lerp(target_position, t)
+	if Settings.entity_animations:
+		global_position = start_position.lerp(target_position, t)
+	else:
+		if t >= 1.0:
+			global_position = target_position
+
 
 	if t >= 1.0:
 		if is_instance_valid(target):
