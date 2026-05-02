@@ -22,6 +22,7 @@ MeniuMusic="*uid://rmst0aa5yhpm"
 GameMusic="*uid://dcaw1ppk7tfda"
 TowerPlacer="*uid://b3ve4hkikk0gh"
 Game_Over_Signal="*uid://dbm44qpdja7xa"
+Settings="*uid://iy21u63ch6m0"
 
 [display]
 

@@ -42,7 +42,6 @@ func complete_wave() -> void:
 
 	await get_tree().create_timer(2.0).timeout
 
-	# only hide if no new wave started
 	if current_id == hide_request_id:
 		hide()
 

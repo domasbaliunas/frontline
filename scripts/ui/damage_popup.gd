@@ -31,7 +31,8 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	if _damage_text.is_empty():
 		return
-
+	if !Settings.damage_popup:
+		return
 	var font := ThemeDB.fallback_font
 	if font == null:
 		return
