@@ -27,6 +27,12 @@ func show_victory() -> void:
 	var main_ui = map.get_node("CanvasLayer")
 	if main_ui: main_ui.hide()
 	
+	var pause_button = get_tree().root.find_child("PauseMenuButton", true, false)
+	if pause_button:
+		pause_button.hide()
+	
+	
+	
 	visible = true
 	particles_left.emitting = true
 	particles_right.emitting = true
