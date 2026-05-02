@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://b2t47qwc20c4f"]
+
+[ext_resource type="Script" uid="uid://bf5haw0swryit" path="res://scripts/ui/victory_screen.gd" id="1_lcvyk"]
+[ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://assets/fonts/Enchanted Land.otf" id="2_mtfol"]
+
+[sub_resource type="Gradient" id="Gradient_lcvyk"]
+offsets = PackedFloat32Array(0, 0.19140625, 0.45703125, 0.62890625, 0.77734375, 1)
+colors = PackedColorArray(0.41960785, 0, 0, 1, 0.19215687, 0.8509804, 0.19215687, 1, 0.45882353, 0.16078432, 0.45882353, 1, 0.627451, 0.84705883, 0.13333334, 1, 0.34117648, 0.4509804, 0.43529412, 1, 0.3529412, 0.3254902, 1, 1)
+
+[node name="VictoryScreen" type="Control" unique_id=1598744375]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lcvyk")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1009515996]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22352941, 0.2, 0.06666667, 0.27450982)
+
+[node name="Label" type="Label" parent="." unique_id=1943995201]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -175.0
+offset_right = 315.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9137255, 0.92156863, 0.14117648, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_mtfol")
+theme_override_font_sizes/font_size = 300
+text = "Victory!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUParticlesLeft" type="CPUParticles2D" parent="." unique_id=933692177]
+position = Vector2(1, 615)
+emitting = false
+amount = 100
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(1, -1)
+spread = 36.25
+gravity = Vector2(0, 40)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 100.0
+damping_min = 10.0
+damping_max = 20.0
+scale_amount_min = 10.0
+scale_amount_max = 11.0
+color_initial_ramp = SubResource("Gradient_lcvyk")
+
+[node name="CPUParticlesRight" type="CPUParticles2D" parent="." unique_id=2032963331]
+position = Vector2(1149, 597)
+emitting = false
+amount = 100
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(-1, -1)
+spread = 36.25
+gravity = Vector2(0, 40)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 100.0
+damping_min = 10.0
+damping_max = 20.0
+scale_amount_min = 10.0
+scale_amount_max = 11.0
+color_initial_ramp = SubResource("Gradient_lcvyk")
+
+[node name="Button" type="Button" parent="." unique_id=114009354]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -153.0
+offset_right = 100.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_mtfol")
+theme_override_font_sizes/font_size = 70
+text = "Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
