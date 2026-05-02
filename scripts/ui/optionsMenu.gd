@@ -39,11 +39,6 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 	else:
 		self.visible = false
-func update_texts():
-	screen_cb.text = "Screen Animations: " + get_state(Settings.screen_animations)
-	entity_cb.text = "Entities Animations: " + get_state(Settings.entity_animations)
-	damage_cb.text = "Damage Popup: " + get_state(Settings.damage_popup)
-	wave_cb.text = "Wave Popup: " + get_state(Settings.wave_popup)
 
 func get_state(value: bool) -> String:
 	return "ON" if value else "OFF"
