@@ -149,32 +149,26 @@ func get_target():
 	return best_target
 
 func attack(target):
-	
+
+	if target == null or not is_instance_valid(target):
+		return
+
+	shots_fired += 1
+
+	var is_critical_hit := critical_shot_interval > 0 and shots_fired % critical_shot_interval == 0
+
+	var final_damage := base_damage
+	if is_critical_hit:
+		final_damage *= critical_damage_multiplier
+
 	if !Settings.entity_animations:
-		var is_critical_hit := critical_shot_interval > 0 and shots_fired % critical_shot_interval == 0
-		
-		var final_damage := base_damage
-		if is_critical_hit:
-			final_damage *= critical_damage_multiplier
+		target.take_damage(final_damage, is_critical_hit, tower_type)
+		return
 
-		if is_instance_valid(target):
-			target.take_damage(final_damage, is_critical_hit, tower_type)
-
-		shots_fired += 1
-	return
-		
 	if projectile_scene == null:
 		return
 
 	var proj = projectile_scene.instantiate()
-	shots_fired += 1
-
-	var is_critical_hit := critical_shot_interval > 0 and shots_fired % critical_shot_interval == 0
-	var final_damage := base_damage
-
-	if is_critical_hit:
-		final_damage *= critical_damage_multiplier
-
 	proj.global_position = global_position
 	proj.target = target
 	proj.damage = final_damage
