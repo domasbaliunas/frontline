@@ -20,7 +20,10 @@ func _on_body_entered(body):
 		update_ui()
 
 		if hp <= 0:
+			hp = 0
+			update_ui()
 			print("GAME OVER")
+			Game_Over_Signal.game_over.emit()
 
 
 func update_ui():
