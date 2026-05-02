@@ -24,9 +24,14 @@ func _on_game_over():
 	get_parent().get_node("AutoWaveStartButton").hide()
 	get_parent().get_node("SpeedButton").hide()
 	
+	
 	var shop = get_parent().get_node("ShopCanvas") 
 	if shop:
 		shop.hide()
+	
+	var pause_button = get_tree().root.find_child("PauseMenuButton", true, false)
+	if pause_button:
+		pause_button.hide()
 	
 	flash.visible = true
 	var tween = create_tween()
@@ -39,6 +44,7 @@ func _on_game_over():
 
 func _on_restart_btn_pressed() -> void:
 	get_tree().reload_current_scene()
+	Currency.reset_coins()
 
 
 func _on_main_menu_btn_pressed() -> void:
