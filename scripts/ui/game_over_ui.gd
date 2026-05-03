@@ -16,22 +16,27 @@ func _on_game_over():
 	if main_ui:
 		main_ui.hide()
 	
-	get_parent().get_node("HBoxContainer").hide()
-	get_parent().get_node("HBoxContainer2").hide()
-	get_parent().get_node("HBoxContainer3").hide()
-	get_parent().get_node("HBoxContainer4").hide()
-	get_parent().get_node("WaveStartButton").hide()
-	get_parent().get_node("AutoWaveStartButton").hide()
-	get_parent().get_node("SpeedButton").hide()
+	var nodes_to_hide = [
+		"HBoxContainer", "HBoxContainer2", "HBoxContainer3", "HBoxContainer4",
+		"WaveStartButton", "AutoWaveStartButton", "SpeedButton"]
+	
+	for node_name in nodes_to_hide:
+		var node = get_parent().get_node_or_null(node_name)
+		if node:
+			node.hide()
 	
 	
 	var shop = get_parent().get_node("ShopCanvas") 
 	if shop:
 		shop.hide()
 	
-	var pause_button = get_tree().root.find_child("PauseMenuButton", true, false)
+	var pause_button = get_tree().root.find_child("PauseMenuGroup", true, false)
 	if pause_button:
 		pause_button.hide()
+	
+	var TowerMenu = get_tree().root.find_child("TowerMenu", true, false)
+	if TowerMenu:
+		TowerMenu.hide()
 	
 	flash.visible = true
 	var tween = create_tween()
@@ -49,3 +54,5 @@ func _on_restart_btn_pressed() -> void:
 
 func _on_main_menu_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	GameMusic.stop()
+	MeniuMusic.play()
