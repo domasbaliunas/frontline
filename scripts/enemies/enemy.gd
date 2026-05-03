@@ -106,6 +106,8 @@ func die() -> void:
 	if is_boss:
 		boss_died.emit()
 		_spawn_boss_death_animation()
+		var victory_ui = get_tree().current_scene.find_child("VictoryScreen", true, false)
+		victory_ui.show_victory()
 
 	Currency.add_coins(coin_reward)
 	queue_free() 
