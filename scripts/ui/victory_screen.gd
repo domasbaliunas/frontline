@@ -16,13 +16,17 @@ func show_victory() -> void:
 	var shop = map.get_node("ShopCanvas")
 	if shop: shop.hide()
 	
-	map.get_node("HBoxContainer").hide()
-	map.get_node("HBoxContainer2").hide()
-	map.get_node("HBoxContainer3").hide()
-	map.get_node("HBoxContainer4").hide()
-	map.get_node("WaveStartButton").hide()
-	map.get_node("AutoWaveStartButton").hide()
-	map.get_node("SpeedButton").hide()
+	
+	var nodes_to_hide = [
+		"HBoxContainer", "HBoxContainer2", "HBoxContainer3", "HBoxContainer4",
+		"WaveStartButton", "AutoWaveStartButton", "SpeedButton"]
+	
+	for node_name in nodes_to_hide:
+		var node = get_parent().get_parent().get_node_or_null(node_name)
+		if node:
+			node.hide()
+	
+	
 	
 	var main_ui = map.get_node("CanvasLayer")
 	if main_ui: main_ui.hide()

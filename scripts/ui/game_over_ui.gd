@@ -16,13 +16,14 @@ func _on_game_over():
 	if main_ui:
 		main_ui.hide()
 	
-	get_parent().get_node("HBoxContainer").hide()
-	get_parent().get_node("HBoxContainer2").hide()
-	get_parent().get_node("HBoxContainer3").hide()
-	get_parent().get_node("HBoxContainer4").hide()
-	get_parent().get_node("WaveStartButton").hide()
-	get_parent().get_node("AutoWaveStartButton").hide()
-	get_parent().get_node("SpeedButton").hide()
+	var nodes_to_hide = [
+		"HBoxContainer", "HBoxContainer2", "HBoxContainer3", "HBoxContainer4",
+		"WaveStartButton", "AutoWaveStartButton", "SpeedButton"]
+	
+	for node_name in nodes_to_hide:
+		var node = get_parent().get_node_or_null(node_name)
+		if node:
+			node.hide()
 	
 	
 	var shop = get_parent().get_node("ShopCanvas") 
