@@ -31,10 +31,13 @@ func show_victory() -> void:
 	var main_ui = map.get_node("CanvasLayer")
 	if main_ui: main_ui.hide()
 	
-	var pause_button = get_tree().root.find_child("PauseMenuButton", true, false)
+	var pause_button = get_tree().root.find_child("PauseMenuGroup", true, false)
 	if pause_button:
 		pause_button.hide()
 	
+	var TowerMenu = get_tree().root.find_child("TowerMenu", true, false)
+	if TowerMenu:
+		TowerMenu.hide()
 	
 	
 	visible = true
@@ -46,3 +49,5 @@ func show_victory() -> void:
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	GameMusic.stop()
+	MeniuMusic.play()
