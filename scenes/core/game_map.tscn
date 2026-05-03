@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://byn7bvc4jijy1" path="res://scripts/ui/wave_complete_message.gd" id="21_lj1gy"]
 [ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://assets/fonts/Enchanted Land.otf" id="22_j2tyq"]
 [ext_resource type="Script" uid="uid://cltswv4dfdijr" path="res://scripts/ui/wave_progress.gd" id="23_j2tyq"]
+[ext_resource type="PackedScene" uid="uid://cflagygnjk3ow" path="res://scenes/ui/game_over_ui.tscn" id="24_8anjt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3l8d"]
 texture = ExtResource("1_qohhg")
@@ -876,7 +877,6 @@ expand_icon = true
 
 [node name="Player" parent="." unique_id=1980538148 instance=ExtResource("4_tw6lq")]
 position = Vector2(1026, 624)
-hp = null
 
 [node name="ShopCanvas" type="Control" parent="." unique_id=1764928307]
 layout_mode = 3
@@ -1018,6 +1018,8 @@ offset_right = 376.0
 offset_bottom = 30.0
 theme_override_font_sizes/font_size = 16
 text = "Wave Progress"
+
+[node name="GameOverUI" parent="." unique_id=668918792 instance=ExtResource("24_8anjt")]
 
 [connection signal="pressed" from="WaveStartButton" to="." method="_on_wave_start_pressed"]
 [connection signal="pressed" from="ShopCanvas/Button" to="ShopCanvas" method="_on_button_pressed"]

@@ -16,6 +16,12 @@ func pause():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
+		
+		var game_over = get_tree().current_scene.find_child("GameOverUI", true, false)
+		var is_game_over_visible = game_over != null and game_over.visible
+		
+		if is_game_over_visible: return
+		
 		if !get_tree().paused:
 			pause()
 		else:

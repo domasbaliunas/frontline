@@ -5,6 +5,7 @@ extends Node2D
 @onready var range_visual: Polygon2D = $RangeCircle
 @onready var tower_sprite: Sprite2D = $Sprite2D
 @onready var area = $Area2D
+var is_game_over = false
 
 @export var attack_speed: float = 0.75
 @export var tower_type: String = "normal"
@@ -119,6 +120,7 @@ func set_range_visible(visible: bool):
 			range_visual.color = Color(0, 0, 0, 0.2)
 
 func _on_attack_timer_timeout():
+	if is_game_over: return
 	var target = get_target()
 	if target != null:
 		attack(target)
