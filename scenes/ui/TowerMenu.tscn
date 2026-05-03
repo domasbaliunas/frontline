@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjyj4itibef8c"]
 
-[ext_resource type="Script" uid="uid://dmo8wt56b67r7" path="res://scripts/ui/tower_menu.gd" id="1_82j08"]   
+[ext_resource type="Script" uid="uid://dmo8wt56b67r7" path="res://scripts/ui/tower_menu.gd" id="1_82j08"]
 
 [node name="TowerMenu" type="CanvasLayer" unique_id=1576407527]
 script = ExtResource("1_82j08")

@@ -45,6 +45,7 @@ const WAVES_FILE_PATH = "res://assets/data/waves.json"
 const MAX_WAVES = 21
 #Stops Main meniu music once game starts
 func _ready() -> void:
+	apply_screen_animations()
 	add_to_group("game_map")
 
 	if MeniuMusic:
@@ -567,3 +568,11 @@ func _get_alive_wave_health_sum() -> float:
 		total += maxf(float(mob.get("health")), 0.0)
 
 	return total
+func apply_screen_animations():
+	for node in get_tree().get_nodes_in_group("screen_animations"):
+		var anim = node.get_node_or_null("AnimationPlayer")
+		if anim:
+			if Settings.screen_animations:
+				anim.play()
+			else:
+				anim.pause()

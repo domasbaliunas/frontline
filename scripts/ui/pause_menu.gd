@@ -21,6 +21,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		var is_victory_visible = victory != null and victory.visible
 		
 		if is_victory_visible: return
+		var game_over = get_tree().current_scene.find_child("GameOverUI", true, false)
+		var is_game_over_visible = game_over != null and game_over.visible
+		
+		if is_game_over_visible: return
 		
 		if !get_tree().paused:
 			pause()

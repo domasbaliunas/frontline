@@ -7,6 +7,9 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 func show_message():
+	if !Settings.wave_popup:
+		return
+	
 	visible = true
 	await get_tree().create_timer(2.0, true, false, true).timeout
 	visible = false

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cflagygnjk3ow"]
+
+[ext_resource type="Script" uid="uid://m7tqlum08imk" path="res://scripts/ui/game_over_ui.gd" id="1_i5oy2"]
+[ext_resource type="FontFile" uid="uid://cprx38kpt5i72" path="res://assets/fonts/Enchanted Land.otf" id="2_u4odh"]
+
+[node name="GameOverUI" type="CanvasLayer" unique_id=668918792]
+script = ExtResource("1_i5oy2")
+
+[node name="Flash" type="ColorRect" parent="." unique_id=1871475976]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0)
+
+[node name="Panel" type="Panel" parent="." unique_id=898547441]
+custom_minimum_size = Vector2(500, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=664108061]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 47.0
+offset_right = 466.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_u4odh")
+theme_override_font_sizes/font_size = 72
+text = "Game over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1028230663]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -201.0
+offset_top = -125.0
+offset_right = 201.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Restart_Btn" type="Button" parent="Panel/HBoxContainer" unique_id=2115498113]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4odh")
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
+[node name="MainMenu_Btn" type="Button" parent="Panel/HBoxContainer" unique_id=84763543]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(1, 0, 0, 0.98039216)
+theme_override_fonts/font = ExtResource("2_u4odh")
+theme_override_font_sizes/font_size = 40
+text = "Menu"
+
+[connection signal="pressed" from="Panel/HBoxContainer/Restart_Btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/MainMenu_Btn" to="." method="_on_main_menu_btn_pressed"]
