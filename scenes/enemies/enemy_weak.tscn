@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b188k0gu0uuv0" path="res://assets/images/enemies/BabyBoar.png" id="2_biwi2"]
 
 [node name="EnemyWeak" unique_id=1987046420 instance=ExtResource("1_sjijl")]
+damage = 2
 speed = 140.0
 max_health = 30.0
 coin_reward = 10

@@ -8,6 +8,7 @@ size = Vector2(107, 78)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=2089478898]
 script = ExtResource("1_aipsv")
+damage = 10
 speed = 10.0
 max_health = 50000.0
 coin_reward = 2500
