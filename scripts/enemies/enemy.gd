@@ -7,6 +7,7 @@ signal boss_spawned(current_hp, max_hp)
 signal boss_health_changed(current_hp, max_hp)
 signal boss_died
 
+@export var damage: int = 1
 @export var speed: float = 75
 @export var max_health: float = 100
 @export var coin_reward: int = 10

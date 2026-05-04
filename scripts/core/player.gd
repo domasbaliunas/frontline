@@ -11,7 +11,8 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("mobs"):
-		hp -= 1
+		hp -= body.damage
+		print(body.damage)
 		body.queue_free()
 		
 		if flash_layer:
