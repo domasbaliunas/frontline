@@ -4,13 +4,16 @@
 ![GDScript](https://img.shields.io/badge/Language-GDScript-355570)
 ![License](https://img.shields.io/badge/License-See%20LICENSE-lightgrey)
 
+## About
+
 A 2D tower defense game built with the Godot Engine. Defend your lanes, place towers, and survive wave after wave.
 
 ## Features
 
 - Classic 2D tower defense gameplay
-- Multiple enemy types and waves
+- Multiple enemy types and 20 waves of enemies
 - Towers with different roles
+- Boss fight after completing all waves
 - Lightweight Godot project structure
 
 ## Getting Started
@@ -27,9 +30,21 @@ A 2D tower defense game built with the Godot Engine. Defend your lanes, place to
 
 ## Controls
 
-Controls use standard mouse and keyboard inputs.
+Most actions require left clicks.
 
-## Project Structure
+To cancel tower placement mode do a right click.
+
+To enter the game menu press *Esc* on your keyboard.
+
+## Contributing
+
+### Steps to follow
+
+1. Clone the repository
+2. Create a branch
+3. Create a pull request
+
+### Project Structure
 
 - `assets/` - Art, audio, and data assets
 - `scenes/` - Godot scenes
@@ -47,3 +62,5 @@ Contributors:
 ## License
 
 See [LICENSE](LICENSE) for details.
+
+[Back to top](#top)
